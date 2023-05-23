@@ -1,0 +1,23 @@
+{% include 'main.html' %}
+{% load static %}
+
+{% block title %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<title>Home</title>
+{% endblock title %}
+
+{% block content %}
+<div class="page">
+   <div class="page__image__block">
+       <img src="{% static 'media/mounths1.jpg' %}" alt="" class="page__image">
+       <div class="page__image__mask"></div>
+   </div>
+   <div class="page__image__content">
+         {% include 'base/blocks/Inbox.html' %}
+         {% include 'base/blocks/Today.html' %}
+         {% include 'base/blocks/Calendar.html' %}
+   </div>
+ </div> 
+<script src="{% static 'js/todos.js' %}" ></script>
+{% endblock content %}

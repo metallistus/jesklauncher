@@ -1,0 +1,56 @@
+{% load static %}
+<div class="column inbox">
+   <h2 class="column__title">Inbox</h2>
+
+   <div class="column__notifications">
+      
+   </div>
+   <form class="inbox__tasks" action="" method="POST">
+      {% csrf_token %}
+      <div class="inbox__tasks__apps">
+         <div class="inbox__tasks__app">
+            <input type="checkbox" name="note_type"  value="jesk">
+            <span>+Jesk</span>
+         </div>   
+         <div class="inbox__tasks__app">
+            <input type="checkbox" name="note_type"  value="jesk">
+            <span>+ <img src="{% static 'media/icons/trello 1.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
+         </div>   
+         <div class="inbox__tasks__app">
+            <input type="checkbox" name="note_type"  value="jesk">
+            <span>+ <img src="{% static 'media/icons/notification 5.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
+         </div>   
+         <div class="inbox__tasks__app">
+            <input type="checkbox" name="note_type"  value="jesk">
+            <span>+ <img src="{% static 'media/icons/Group.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
+         </div>   
+      </div>
+      <div class="inbox__add__tasks">
+         <h3>
+            <span  class="inbox__add__tasks__notification__number" ></span>
+            <span  class="inbox__tasks__menu__button fa-solid fa-circle-chevron-down" title="Show All Titles   " ></span>
+            Notes +
+         </h3>
+         <div class="inbox__add__tasks__form">
+            <input 
+               type="text" 
+               placeholder="Enter your notes..." 
+               name="note_user_id"
+               id="note_user_id"
+               value="{{request.user.id}}"
+               style="display: none;"
+            >
+            <input 
+               type="text" 
+               placeholder="Enter your notes..." 
+               name="note"
+               class="add_note"
+            >
+            <button class="btn" hidden>send</button>
+      </div>
+   </div>
+   <div class="inbox__show__tasks">
+      
+   </div>
+   </form>
+</div>
