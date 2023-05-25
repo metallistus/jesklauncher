@@ -16,7 +16,6 @@ from .index_view import get_gmail_service
 
 @login_required(login_url='base:sign-in')
 def index_view(request):
-   user = request.user
    # service = get_gmail_service(request)
    
    # result = service.users().messages().list(userId='me', maxResults=10).execute()
@@ -34,25 +33,9 @@ def index_view(request):
    # print(email_addresses)
    
    access_token = request.COOKIES.get('access_token')
-   
-   providers = []
-   for provider in SocialApp.objects.all():
-      providers.append(provider.provider)
-
-   # if request.method == 'POST':
-   #    note = request.POST.get('note')
-         
-   #    Todo.objects.create(
-   #       user = request.user,
-   #       message = note,
-   #    )
                   
    context = {
-      'providers': providers,
-      'user':user,
-      # 'email_addresses': email_addresses,
-      # 'access_token': access_token
-      # 'service':service
+      
    }
    return render(request, 'base/index.html', context)
    

@@ -63,7 +63,14 @@ def sign_up_view(request):
          
          profile = Profile(user = request.user)
          
-         return redirect('base:sign-in-social-media')
+         refresh  = RefreshToken.for_user(user)
+         token = str(refresh.access_token)
+         
+         response = HttpResponseRedirect('/')
+         
+         response.set_cookie('access_token', token)
+         
+         return response
       
    context = {
       'page_type': page_type,
@@ -90,3 +97,29 @@ def sign_in_social_media_view(request):
       'profile': profile
    }
    return render(request, 'base/authIncludeAccounts.html', context)
+
+def google_login_done(request):
+    if request.user.is_authenticated:
+        user = request.user
+        refresh_token = user.socialaccount_set.filter(provider='google')[0].extra_data['refresh_token']
+        # Здесь мы получаем refresh token, связанный с учетной записью Google пользователя
+
+        # Генерация аксесс токена
+        access_token_response = requests.post(
+            'https://accounts.google.com/o/oauth2/token',
+            data={
+                'grant_type': 'refresh_token',
+                'refresh_token': refresh_token,
+                'client_id': '402939344578-5b58lkdodgtrfvshgprcekrh2ca6v4u8.apps.googleusercontent.com',
+                'client_secret': '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'
+            }
+        )
+        access_token = access_token_response.json().get('access_token')
+
+        # Сохранение аксесс токена в куки
+        response = HttpResponseRedirect('/')
+        response.set_cookie('access_token', access_token)
+
+        return response  # Перенаправляем пользователя на целевую страницу
+
+    return HttpResponse('Authentication failed')

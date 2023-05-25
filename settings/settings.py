@@ -255,3 +255,25 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+# CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID'),
+# CLIENT_SECRET = os.environ.get('GOOGLE_SECRET')
+# REDIRECT_URI = '/'
+
+
+# # URL для авторизации пользователя
+# GOOGLE_AUTH_URL = 'https://accounts.google.com/o/oauth2/auth'
+
+# # URL для обмена авторизационного кода на токены доступа и обновления
+# GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token'
+
+# # Параметры авторизации
+# params = {
+#     'client_id': CLIENT_ID,
+#     'redirect_uri': REDIRECT_URI,
+#     'response_type': 'code',
+#     'scope': 'https://www.googleapis.com/auth/gmail.readonly',
+# }
+
+# # URL для получения авторизационного кода
+# GOOGLE_AUTH_RIDERECT_URL = GOOGLE_ + '?' + '&'.join([f'{key}={value}' for key, value in params.items()])

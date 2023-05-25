@@ -21,6 +21,9 @@ notes_button.onclick = () => {
 const place_for_notes = document.querySelector('.inbox__show__tasks')
 const notification_number = document.querySelector('.inbox__add__tasks__notification__number');
 
+place_for_notes.innerHTML = ''
+
+
 // GET notes
 const getNotes = async () => {
    let response = await fetch('/api/notes')
@@ -72,10 +75,13 @@ inbox_tasks.addEventListener('submit',  (e) => {
       .then(response => response.json())
       .then(data => {
         console.log(data);
+
+        notification_number.innerHTML = parseInt(notification_number.innerHTML)+1
         renderNote(data)
+        add_note.value = ''
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error(error);
       });
     
 })
