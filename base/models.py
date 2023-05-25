@@ -28,3 +28,13 @@ class Todo(models.Model):
    
    def __str__(self):
       return self.user.username
+   
+class TodaysNotes(models.Model):
+   user = models.ForeignKey(User, on_delete=models.CASCADE)
+   message = models.CharField(max_length=500, default='')
+   
+   created_at = models.DateTimeField('Created Time', auto_now_add = True, null=True)
+   updated_at = models.DateTimeField(auto_now=True, null=True)
+   
+   def __str__(self):
+      return self.user.username

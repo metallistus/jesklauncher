@@ -351,15 +351,16 @@ a:hover {
       overflow-y: auto;
       padding: 0 4px;
       height: 24vh;
+      min-width: 100%;
 }
 .today__notes {
-
+   margin-bottom: 10%;
 }
 .note {
    padding: 4px;
    background-color: rgb(254,254,254,.05);
    border-radius: 10px;
-   margin-bottom: 6px;
+   margin: 6px 0;
    font-size: 18px;
    display: flex;
    justify-content: space-between;
