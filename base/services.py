@@ -10,5 +10,5 @@ def get_gmail_service(request):
    #  print(credentials)
     # Build the Gmail API service using the user's credentials
     service = build('gmail', 'v1', credentials=credentials)
-    print(service)
+    # print(service)
     return service

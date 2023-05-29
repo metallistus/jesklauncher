@@ -32,7 +32,7 @@ def index_view(request):
    # email_addresses = results['emailAddresses']
    # print(email_addresses)
    
-   access_token = request.COOKIES.get('access_token')
+   # access_token = request.COOKIES.get('access_token')
    today_notes = TodaysNotes.objects.filter(user=request.user)
 
    if request.method == 'POST':

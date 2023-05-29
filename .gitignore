@@ -7,5 +7,5 @@ __pycache__/
 *.vscode/
 *.vscode
 
-# .env
-# *.env
+.env
+*.env

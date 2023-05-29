@@ -55,14 +55,14 @@ def update_profile_info(request):
 def tasks_view(request):
    access_token = request.COOKIES.get('access_token')
    
-   print('_____________', access_token)
-   payload = tokens.AccessToken(access_token, verify=False)
-   user_id = payload['user_id']
+   # print('_____________', access_token)
+   # payload = tokens.AccessToken(access_token, verify=False)
+   # user_id = payload['user_id']
    
    if request.method == 'GET':
       user = User.objects.get(id=1)
       
-      todos = Todo.objects.filter(user = user) 
+      todos = Todo.objects.filter(user = 1) 
             
       if todos:
          return Response({
