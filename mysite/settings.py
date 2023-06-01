@@ -86,7 +86,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'settings.urls'
+ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
     {
@@ -107,7 +107,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'settings.wsgi.application'
+WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 # Database
@@ -117,9 +117,25 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'railway',
+        # 'HOST': 'containers-us-west-11.railway.app',
+        # 'PORT': '6121',
+        # 'PASSWORD': 'Ob07Ocsi2UIgTnVaVIXd',
+        # 'USER': 'postgres',
+        
+        # 'ENGINE': 'djongo',
+        # # 'NAME': 'MongoDB',
+        # 'CLIENT': {
+        #     'host': f'mongodb://mongo:uBxAFQooIasyhEOFiChy@containers-us-west-115.railway.app:7916',
+        # },
+        # 'OPTIONS': {
+        #     'connect': False,    
+        # },
     }
 }
-
+    
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

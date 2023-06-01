@@ -1,6 +1,6 @@
 # import allauth.socialaccount.models
 from allauth.socialaccount.signals import pre_social_login
-from allauth.socialaccount.models import SocialApp, SocialToken
+# from allauth.socialaccount.models import SocialApp, SocialToken
 
 from django.apps import AppConfig
     
@@ -15,7 +15,12 @@ def pre_social_login_callback(request, sociallogin, **kwargs):
     socialtoken = sociallogin.token
     socialaccount = sociallogin.account
     print('_________SocialToken_______', socialtoken)
-    google_socialapp = SocialApp.objects.get(provider="google")
-    socialtoken.app_id = google_socialapp.id
-    socialtoken.account_id = socialaccount.id
-    socialtoken.save()
+    # google_socialapp = SocialApp.objects.get(provider="google")
+    # socialtoken.app_id = google_socialapp.id
+    # socialtoken.account_id = socialaccount.id
+    # socialtoken.save()
+    
+    # no sql - use mongodb
+    # deploy on railway
+    
+    

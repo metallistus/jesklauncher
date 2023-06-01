@@ -34,6 +34,7 @@ def index_view(request):
    
    # access_token = request.COOKIES.get('access_token')
    today_notes = TodaysNotes.objects.filter(user=request.user)
+   todos = Todo.objects.all()
 
    if request.method == 'POST':
       type = request.POST.get('type')
@@ -47,9 +48,20 @@ def index_view(request):
          )
          
          return redirect('base:index')
+      
+      if type == 'todo':
+         todo = request.POST.get('note')
+            
+         message = Todo.objects.create(
+            user = request.user,
+            message = todo
+         )
+         
+         return redirect('base:index')
                   
    context = {
-      'today_notes': today_notes
+      'today_notes': today_notes,
+      'todos': todos
    }
    return render(request, 'base/index.html', context)
    

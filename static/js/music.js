@@ -28,6 +28,10 @@ NatureSoundsSelect.addEventListener('change', (e) => {
    NatureSoundsAudio.play()
 });
 
+NatureSoundsAudio.addEventListener('ended', function() {
+   this.currentTime = 0;
+   this.play();
+});
 
 const timer__left = document.querySelector('.window__timer__left')
 const timer__right = document.querySelector('.window__timer__right')

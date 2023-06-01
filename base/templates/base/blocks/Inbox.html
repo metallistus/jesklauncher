@@ -3,6 +3,7 @@
    <h2 class="column__title">Inbox</h2>
 
    <div class="column__notifications">
+      {% include 'base/blocks/notification.html' %}
       
    </div>
    <form class="inbox__tasks" action="" method="POST">
@@ -27,7 +28,7 @@
       </div>
       <div class="inbox__add__tasks">
          <h3>
-            <span  class="inbox__add__tasks__notification__number" ></span>
+            <span  class="inbox__add__tasks__notification__number" >{{ todos|length }}</span>
             <span  class="inbox__tasks__menu__button fa-solid fa-circle-chevron-down" title="Show All Titles   " ></span>
             Notes +
          </h3>
@@ -35,9 +36,9 @@
             <input 
                type="text" 
                placeholder="Enter your notes..." 
-               name="note_user_id"
+               name="type"
                id="note_user_id"
-               value="{{request.user.id}}"
+               value="todo"
                style="display: none;"
             >
             <input 
@@ -50,7 +51,14 @@
       </div>
    </div>
    <div class="inbox__show__tasks">
-      
+      {% for todo in todos %}
+      <div class='note'>
+         {{todo.message}}
+         <a class='note__delete' href="{%  url 'base:task_delete' todo.id  %}">
+            <i class="fa-solid fa-xmark"></i>
+         </a>
+      </div>
+      {% endfor %}
    </div>
    </form>
 </div>
