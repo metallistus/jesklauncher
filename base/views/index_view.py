@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from ..services import get_gmail_service
 from ..models import Profile, Todo, TodaysNotes
 import google.auth
+import requests
+
 
 from allauth.socialaccount.models import SocialToken, SocialApp
 from allauth.account.models import EmailAddress
@@ -11,30 +12,56 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
 from rest_framework.authtoken.models import Token
-from .index_view import get_gmail_service
+from ..utils import  get_email_text, get_header_value
+
+import base64
 
 
 @login_required(login_url='base:sign-in')
 def index_view(request):
-   # service = get_gmail_service(request)
+   email_list = []
+   socialApp = SocialApp.objects.get(provider='google')
    
-   # result = service.users().messages().list(userId='me', maxResults=10).execute()
-   # messages = result.get('messages', [])
-   # for message in messages:
-   #      msg = service.users().messages().get(userId='me', id=message['id']).execute()
-   #      print(msg['snippet'])
-   # social_token = SocialToken.objects.get(account__user=request.user, account__provider='google')
-   # access_token = social_token.token
+   socialGoogleToken = SocialToken.objects.filter(account__user=request.user, account__provider='google').last()
    
-   # credentials = Credentials.from_authorized_user_info(request.user.socialaccount_set.get(provider='google').extra_data)
-   # service = build('people', 'v1', credentials=credentials)
-   # results = service.people().get(resourceName='people/me', personFields='emailAddresses').execute()
-   # email_addresses = results['emailAddresses']
-   # print(email_addresses)
+   socialGoogleToken = SocialToken.objects.filter(account__user=request.user, account__provider='google').last()
+   if socialGoogleToken:
+      access_token = socialGoogleToken.token
    
-   # access_token = request.COOKIES.get('access_token')
+      responseEmail = requests.get('https://www.googleapis.com/gmail/v1/users/me/messages', params={
+         'access_token': access_token,
+         'maxResults': 10
+      })
+      
+      
+      # print('______________response______________', response)
+      if responseEmail.status_code == 200:
+         emails = responseEmail.json().get('messages', [])
+         # print('____________emails______________', emails)
+         
+         email_list = []
+         for email in emails:
+               email_id = email['id']
+               email_response = requests.get(f'https://www.googleapis.com/gmail/v1/users/me/messages/{email_id}', params={
+                  'access_token': access_token
+               })
+               
+               if email_response.status_code == 200:
+                  email_data = email_response.json()
+                  message_id = email_data['id']
+                  sender = get_header_value(email_data['payload']['headers'], 'From')
+                  title = get_header_value(email_data['payload']['headers'], 'Subject')
+                  created_time = get_header_value(email_data['payload']['headers'], 'Date')
+                  
+                  email_list.append({
+                     'id': message_id,
+                     'sender': sender, 
+                     'title': title, 
+                     'created_time': created_time[:-6],
+                  })
+   
    today_notes = TodaysNotes.objects.filter(user=request.user)
-   todos = Todo.objects.all()
+   todos = Todo.objects.filter(user=request.user)
 
    if request.method == 'POST':
       type = request.POST.get('type')
@@ -61,7 +88,9 @@ def index_view(request):
                   
    context = {
       'today_notes': today_notes,
-      'todos': todos
+      'todos': todos,
+      
+      'emails': email_list,
    }
    return render(request, 'base/index.html', context)
    

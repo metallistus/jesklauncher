@@ -3,8 +3,25 @@
    <h2 class="column__title">Inbox</h2>
 
    <div class="column__notifications">
-      {% include 'base/blocks/notification.html' %}
-      
+   {% for email in emails %}
+      <div class="notification">
+         <div class="notification__header">
+            <img src="{%  static 'media/gmail.png' %}" alt="">
+            <span>Gmail</span>
+         </div>
+         <div class="notification__body">
+            <div class="notification__message">
+               <span>{{ email.title}} </span>
+               <span class="notification__message__time">{{ email.created_time }}</span>
+            </div>
+            <div class="notification__links">
+               <a href="https://mail.google.com/mail/u/0/#inbox/{{ email.id }}" target="_blank">Show</a>
+               <a href="">Reply</a>
+               <a href="">Forward</a>
+            </div>
+         </div>
+      </div>
+   {% endfor %}
    </div>
    <form class="inbox__tasks" action="" method="POST">
       {% csrf_token %}
