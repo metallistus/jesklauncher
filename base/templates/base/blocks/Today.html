@@ -1,9 +1,9 @@
 {% load static %}
 <div class="column today">
    <h2 class="column__title">Today</h2>
-   <div class="today__work">
-
-   </div>
+   {% comment %} {% autoescape off  %} {% endcomment %}
+   <div class="today__work"></div>
+   {% comment %} {% endautoescape %} {% endcomment %}
    <div class="today__pre__notes inbox__add__tasks">
       <h3>
          <span  class="inbox__add__tasks__notification__number">{{today_notes|length}}</span>
@@ -41,3 +41,5 @@
       </div>
    </div>
 </div>
+
+<script src="{% static 'js/openInToday.js' %}" ></script>

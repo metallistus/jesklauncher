@@ -45,6 +45,7 @@ def index_view(request):
                email_response = requests.get(f'https://www.googleapis.com/gmail/v1/users/me/messages/{email_id}', params={
                   'access_token': access_token
                })
+               print('________________________',email_response)
                
                if email_response.status_code == 200:
                   email_data = email_response.json()
@@ -52,11 +53,13 @@ def index_view(request):
                   sender = get_header_value(email_data['payload']['headers'], 'From')
                   title = get_header_value(email_data['payload']['headers'], 'Subject')
                   created_time = get_header_value(email_data['payload']['headers'], 'Date')
+                  text = get_email_text(email_data['payload'])
                   
                   email_list.append({
                      'id': message_id,
                      'sender': sender, 
                      'title': title, 
+                     'text': text,
                      'created_time': created_time[:-6],
                   })
    
