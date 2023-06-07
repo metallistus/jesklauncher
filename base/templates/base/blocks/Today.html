@@ -1,13 +1,18 @@
 {% load static %}
 <div class="column today">
    <h2 class="column__title">Today</h2>
-   {% comment %} {% autoescape off  %} {% endcomment %}
-   <div class="today__work"></div>
-   {% comment %} {% endautoescape %} {% endcomment %}
-   <div class="today__pre__notes inbox__add__tasks">
+   <div class="today__work" style=" height: 70vh"></div>
+   <div 
+      class="today__pre__notes inbox__add__tasks" 
+      style=" height: 24vh"
+   >
       <h3>
          <span  class="inbox__add__tasks__notification__number">{{today_notes|length}}</span>
          <!-- <span  class="inbox__tasks__menu__button fa-solid fa-circle-chevron-down" title="Show All Titles   " ></span> -->
+         <span  
+            class="inbox__todays__menu__button fa-solid fa-circle-chevron-down" 
+            title="Show All Titles   " 
+         ></span>
          Today's notes: 
       </h3>
       <div class="">
@@ -43,3 +48,4 @@
 </div>
 
 <script src="{% static 'js/openInToday.js' %}" ></script>
+<script src="{% static 'js/openCloseTodayNotes.js' %}" ></script>

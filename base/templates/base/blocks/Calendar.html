@@ -5,7 +5,7 @@
       <div>
          <button  class="btn" id="theme"></button>
          <button class="btn btn--bold" id="open_account" >+</button>
-         <h3>{{ request.user.username }}</h3>
+         <h3 class="callendar__top__username">{{ request.user.email }}</h3>
       </div>
       <a href="{% url 'base:sign-out' %}" class="btn ">Sign Out</a>
    </div>

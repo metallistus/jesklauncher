@@ -6,8 +6,16 @@
    {% for email in emails %}
       <div class="notification">
          <div class="notification__header">
-            <img src="{%  static 'media/gmail.png' %}" alt="">
+            {% if email.type == 'gmail' %}
+            <img src="{%  static 'media/gmail.png' %}" alt="Gmail">
             <span>Gmail</span>
+            {% elif email.type == 'google_event' %}
+            <img src="{%  static 'media/google-calendar.png' %}" alt="Google Calendar">
+            <span>Google Calendar</span>
+            {% elif email.type == 'google_todo' %}
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a9.95 9.95 0 014.473 1.055l-.895 1.791A7.949 7.949 0 0012 4c-4.41 0-8 3.59-8 8s3.59 8 8 8c1.09 0 2.129-.22 3.076-.615l.771 1.847A9.962 9.962 0 0112 22C6.48 22 2 17.52 2 12S6.48 2 12 2zm9 10v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm-.4-8.4L22 5 11 16l-4-4 1.4-1.4 2.6 2.6 9.6-9.6z" fill="#1A73E8"/></svg>
+            <span>Google Todo</span>
+            {% endif %}
          </div>
          <div class="notification__body">
             <div class="notification__message">
@@ -15,9 +23,11 @@
                <span class="notification__message__time">{{ email.created_time }}</span>
             </div>
             <div class="notification__links">
-               <a href="https://mail.google.com/mail/u/0/#inbox/{{ email.id }}" target="_blank">Show</a>
-               <a href="">Reply</a>
-               <a href="">Forward</a>
+               <a href="{{ email.link }}" target="_blank">Show</a>
+               {% if email.type == 'gmail'  %}
+                  <a href="">Reply</a>
+                  <a href="">Forward</a>
+               {% endif %}
             </div>
             <span class="notification__text" >{{email.text}}</span>
          </div>
@@ -32,16 +42,16 @@
             <span>+Jesk</span>
          </div>   
          <div class="inbox__tasks__app">
-            <input type="checkbox" name="note_type"  value="jesk">
+            <input type="checkbox" name="note_type"  value="trello">
             <span>+ <img src="{% static 'media/icons/trello 1.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
          </div>   
          <div class="inbox__tasks__app">
-            <input type="checkbox" name="note_type"  value="jesk">
+            <input type="checkbox" name="note_type"  value="notification">
             <span>+ <img src="{% static 'media/icons/notification 5.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
          </div>   
          <div class="inbox__tasks__app">
-            <input type="checkbox" name="note_type"  value="jesk">
-            <span>+ <img src="{% static 'media/icons/Group.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
+            <input type="checkbox" name="note_type"  value="google_todo">
+            <span>+ <img src="{% static 'media/task-add-accent-light.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
          </div>   
       </div>
       <div class="inbox__add__tasks">

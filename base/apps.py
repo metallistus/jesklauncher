@@ -6,24 +6,33 @@ from allauth.socialaccount.signals import (pre_social_login,
                                            social_account_added)
 import allauth.socialaccount
 from django.dispatch import receiver
+import django.contrib.auth
+
 
 @receiver(pre_social_login)
 def pre_social_login_callback(sender, request, sociallogin, **kwargs):
     socialtoken = sociallogin.token
     socialaccount = sociallogin.account
-    print('_____________SOCIAL_TOKEN___________', socialtoken)
-    print('_____________SOCIAL_ACCOUNT___________', socialaccount)
+    
+    user = socialaccount.user if hasattr(socialaccount, "user") else None
+
+    if not user:
+        user = django.contrib.auth.models.User.objects.create_user(
+            username=socialaccount.uid, email=socialaccount.extra_data["email"]
+        )
+        sociallogin.connect(request, user)
     
     # Delete existing social tokens
     allauth.socialaccount.models.SocialToken.objects.filter(account__user=socialaccount.user, account__provider=socialaccount.provider).delete()
 
     # get social app
     socialApp = allauth.socialaccount.models.SocialApp.objects.get(provider=socialaccount.provider)
-    print('_______social_account_provider________', socialaccount.provider)
+    # print('_______social_account_provider________', socialaccount.provider)
         
     socialtoken.app_id = socialApp.id
     socialtoken.account_id = socialaccount.id
     socialtoken.save()
+    
 
 class BaseConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'

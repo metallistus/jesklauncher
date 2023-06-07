@@ -353,6 +353,7 @@ a:hover {
    border-bottom: 1px solid rgb(254,254,254,.3);
    max-width: 60vw;
    padding: 10px;
+   transition: all .3s linear;
 }
 .today__pre__notes {
       width: 100%;
@@ -360,6 +361,7 @@ a:hover {
       padding: 0 4px;
       height: 24vh;
       min-width: 100%;
+      transition: all .3s linear;
 }
 .today__notes {
    margin-bottom: 10%;
@@ -384,12 +386,12 @@ a:hover {
 .note__delete:hover {
    color: rosybrown;
 }
-.inbox__tasks__menu__button {
+.inbox__tasks__menu__button, .inbox__todays__menu__button {
    font-size: 24px;
    transition: all .3s linear;
    margin: 0 5px;
 }
-.inbox__tasks__menu__button:hover {
+.inbox__tasks__menu__button:hover, .inbox__todays__menu__button:hover {
    color: rgb(137, 174, 223,.8);
    cursor: pointer;
 }
@@ -623,4 +625,11 @@ left:hover,right:hover {
 
 .notification__text {
    display: none;
+}
+
+.callendar__top__username {
+   white-space: pre-line;
+   word-wrap: break-word;
+   max-width: 120px;
+   font-size: 18px;
 }
