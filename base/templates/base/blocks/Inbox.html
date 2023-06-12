@@ -38,19 +38,19 @@
       {% csrf_token %}
       <div class="inbox__tasks__apps">
          <div class="inbox__tasks__app">
-            <input type="checkbox" name="note_type"  value="jesk">
+            <input type="checkbox" name="isJesk"  value="jesk">
             <span>+Jesk</span>
          </div>   
-         <div class="inbox__tasks__app">
+         <!-- <div class="inbox__tasks__app">
             <input type="checkbox" name="note_type"  value="trello">
             <span>+ <img src="{% static 'media/icons/trello 1.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
-         </div>   
-         <div class="inbox__tasks__app">
-            <input type="checkbox" name="note_type"  value="notification">
+         </div>    -->
+         <!-- <div class="inbox__tasks__app">
+            <input type="checkbox" name="not"  value="notification">
             <span>+ <img src="{% static 'media/icons/notification 5.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
-         </div>   
+         </div>    -->
          <div class="inbox__tasks__app">
-            <input type="checkbox" name="note_type"  value="google_todo">
+            <input type="checkbox" name="isGoogle_todo"  value="google_todo">
             <span>+ <img src="{% static 'media/task-add-accent-light.svg' %}" alt="icon" class="inbox__tasks__app__icon" /> </span>
          </div>   
       </div>

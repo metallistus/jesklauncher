@@ -53,10 +53,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.telegram',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.trello',
-    'allauth.socialaccount.providers.pinterest',
-    'allauth.socialaccount.providers.reddit',
-    'allauth.socialaccount.providers.shopify',
-    # 'allauth.socialaccount.providers.soundcloud',
     
     'rest_framework',
     'rest_framework.authtoken',
@@ -231,7 +227,17 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': os.environ.get('GITHUB_CLIENT_SECRET'), 
         },
     },
+    'telegram': {
+        'APP': {
+            'client_id': os.environ.get('TELEGRAM_TOKEN'),
+            'secret': '',
+            'key': ''
+        }
+        # 'TOKEN': os.environ.get('TELEGRAM_TOKEN')
+    }
 }
+
+# TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_TOKEN')
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
