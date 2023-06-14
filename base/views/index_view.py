@@ -14,6 +14,7 @@ from googleapiclient.discovery import build
 
 from rest_framework.authtoken.models import Token
 from ..utils import  get_email_text, get_header_value
+from telegram import Bot
 
 import base64
 
@@ -39,6 +40,12 @@ def index_view(request):
 
       # GOOGLE GMAIL
       google_gmail.GoogleGmailService(email_list, access_token, get_email_text, get_header_value)
+   
+   
+   bot_token = '6263736045:AAHXJM8S4NLQKEiH7O1f88pKOa6x9Y0pqLc'
+   bot = Bot(token=bot_token)
+   print('___________bot_______________', bot)
+   
    
    today_notes = TodaysNotes.objects.filter(user=request.user)
    todos = Todo.objects.filter(user=request.user)

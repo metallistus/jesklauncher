@@ -29,6 +29,10 @@ def pre_social_login_callback(sender, request, sociallogin, **kwargs):
     socialApp = allauth.socialaccount.models.SocialApp.objects.get(provider=socialaccount.provider)
     # print('_______social_account_provider________', socialaccount.provider)
         
+    token_secret = socialaccount.extra_data.get("refresh_token")
+    if token_secret:
+        socialtoken.token_secret = token_secret
+        
     socialtoken.app_id = socialApp.id
     socialtoken.account_id = socialaccount.id
     socialtoken.save()
