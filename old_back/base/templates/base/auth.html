@@ -1,0 +1,61 @@
+{% include 'main.html' %}
+{% load static socialaccount account %}
+
+{% block title %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<title>Auth</title>
+{% endblock title %}
+
+{% block content %}
+<div class="page">
+   <div class="page__image__block">
+       <img src="{% static 'media/mounths1.jpg' %}" alt="" class="page__image">
+       <div class="page__image__mask"></div>
+   </div>
+   <div class="page__image__content">
+      
+      <form action="" method="POST">
+         {% csrf_token %}
+
+         {% if page_type == 'sign-in' %}
+         <h2>Sign In</h2>
+         {% csrf_token %}
+         <input type="name" name="email" placeholder="name...">
+         <input type="password" name="password" placeholder="password..." >
+
+         {% elif page_type == 'sign-up' %}
+         <h2>Sign Up</h2>
+         {% csrf_token %}
+         {% for field in form  %}
+            <div class = "form__component">
+               {% if field.errors %}
+               <ul class="errorlist">
+                  {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+               </ul>
+               {% endif %}
+               {{ field }}
+            </div>
+         {% endfor %}
+         
+      {% endif %}
+         <button class="btn">Countinue</button> 
+
+         <div class="form__buttons">
+           <a class="login" href="{% provider_login_url 'google' %}"><i class="fa-brands fa-google"></i></a>
+            <a class="login" href="{% provider_login_url 'facebook' method='oauth2' %}"><i class="fa-brands fa-facebook"></i></a>            
+         </div>
+         
+         {% if page_type == 'sign-in' %}
+         <p>or  <a href="{% url 'base:sign-up' %}" class="link">sign up</a></p>
+         {% elif page_type == 'sign-up' %}
+         <p>or <a href="{% url 'base:sign-in' %}" class="link">sign in</a></p>
+         {% endif %}
+      </form>
+      <h2>
+      {% user_display user %}
+      </h2>
+   </div>
+ </div>
+{% endblock content %}

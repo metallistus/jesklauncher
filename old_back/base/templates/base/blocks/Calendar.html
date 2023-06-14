@@ -1,0 +1,130 @@
+{% load static socialaccount account %}
+
+<div class="column calendar">
+   <div class="callender__top">
+      <div>
+         <button  class="btn" id="theme"></button>
+         <button class="btn btn--bold" id="open_account" >+</button>
+         <h3 class="callendar__top__username">{{ request.user.email }}</h3>
+      </div>
+      <a href="{% url 'base:sign-out' %}" class="btn ">Sign Out</a>
+   </div>
+   <div class="callendar__sound">
+   </div>
+   <div class="calendar__place" >
+     <div class="callendar__place__header" id="callendar__header"></div>
+      <div class="calendar__place__body" id="calendar"></div>
+   </div>
+   <div class="callendar__place">
+      <div class="inbox__tasks__apps calendar__place__bar">
+         <div class="inbox__tasks__app">
+            <input type="checkbox" value="text" id="text__type">
+            <span>+ text</span>
+         </div>
+         <div class="inbox__tasks__app">
+            <input type="checkbox" value="image" id="image__type">
+            <span>+ image</span>
+         </div>
+         <!-- <input type="file" id="upload_motivate_image" > -->
+      </div>
+      <input type="file" id="upload_motivate_image" >
+      <div class="callendar__place__content">
+         <input type="file" id="upload_motivate_image"  />
+         {% if type == 'text' %} 
+         <textarea name="" id="" class="callendar__place__content"></textarea>
+         {% elif type == 'image' %}
+         <img src="/static/media/{{user.profile.video}}" alt="">
+         {% endif %}
+      </div>
+      <div class="callendar__place__content2">
+         
+      </div>
+   </div>
+   {{service}}
+</div>
+
+<div class="accounts">
+   <div class="accounts__header">
+      <h2>Add More Accounts</h2>
+      <button class="btn close__accounts"><i class="fa-solid fa-xmark"></i></button>
+   </div>
+   <div class="accounts__body">
+      {% if user.socialaccount_set.all %}
+         {% for account in user.socialaccount_set.all %}
+            {% if account.provider == 'google' %}
+               <i class="fa-brands fa-google icon" ></i>
+            {% elif account.provider == 'github' %}
+            <i class="fa-brands fa-github icon"></i>
+            {% elif account.provider == 'trello' %}
+            <i class="fa-brands fa-trello"></i>
+            {% elif account.provider == 'instagram' %}
+            <i class="fa-brands fa-instagram"></i>
+            {% elif account.provider == 'facebook' %}
+            <i class="fa-brands fa-square-facebook"></i>
+            {% endif %}
+         {% endfor %}
+   {% else %}
+      <p>No connected accounts.</p>
+   {% endif %}
+      <p>{{access_token}}</p>
+
+      {% comment %} {% providers_media_js %} {% endcomment %}
+      {% comment %} <ul>
+         {% for provider in providers %}
+           
+         {% endfor %}
+       </ul> {% endcomment %}
+
+     <a href="{% url 'socialaccount_connections' %}">Connect Social Account</a> 
+   </div>
+</div>
+
+<div class="callendar__bottom__panel">
+   <div class="callender__top">
+      <button class="btn btn-primary" id="NatureSounds">
+         <span id="NatureSoundsText" >00 : 00</span>
+         <!-- <audio src="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}" id="NatureSoundsAudio" type="audio/mpeg" ></audio> -->
+      </button>
+
+      <div class="callendar__window">
+         <div class="callendar__window__timer">
+            <div class="window__timer">
+               <span class="window__timer__left">00</span>
+               :
+               <span class="window__timer__right">00</span>
+            </div>
+            <button class="btn" id="runTimer" ><i class="fa-solid fa-play"></i></button>
+            <button class="btn" id="restartTime" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
+         </div>
+         <div class="callendar__window__timer">
+            <input type="number" id="getMinutes" default="0" />
+            <input type="number" id="getSeconds" default="0" />
+         </div>
+         <div class="callendar__window__music">
+            <audio src="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}" id="NatureSoundsAudio" type="audio/mpeg" controls></audio>
+            <select name="" id="NatureSoundsSelect">
+               <option value="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}">Sound 1</option>
+               <option value="{% static '/media/sounds/Evening-Improvisation-with-Ethera.mp3' %}">Sound 2</option>
+               <option value="{% static '/media/sounds/jackmichaelking__gentle-ocean-waves-birdsong-and-gull.mp3' %}">Sound 3</option>
+               <option value="{% static '/media/sounds/Rain-Sound-and-Rainforest.mp3' %}">Sound 4</option>
+            </select>
+         </div>
+      </div>
+
+      <button class="btn btn-primary" id="FocusMode">Focus mode</button>
+   </div>
+   <div class="callender__top">
+      <button class="btn btn-primary" id="FullScreen">Full Screen</button>
+      <button class="btn btn-primary" id="ChillMode">Chill mode</button>
+   </div>
+</div>
+</div>
+
+<script src="{% static 'js/calendar.js' %}" ></script>
+<script src="{% static 'js/focusMode.js' %}" ></script>
+<script src="{% static 'js/changeTheme.js' %}" ></script>
+<script src="{% static 'js/music.js' %}" ></script>
+<script src="{% static 'js/accounts.js' %}" ></script>
+
+<script src="{% static 'js/showForm.js' %}" ></script>
+<script src="{% static 'js/changeTheme.js' %}" ></script>

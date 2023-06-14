@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Black+Ops+One&family=Wallpoet&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Black+Ops+One&family=Wallpoet&display=swap');
 
 .page__image__content {
    display: grid;
    width: 100%;
    grid-template-columns: 1fr 2fr 1fr;
-   /* display: flex; */
 }
 @media screen and (max-width: 600px) {
    .page__image__content {
@@ -39,7 +38,6 @@
    justify-content: start;
    align-items: center;
    flex-direction: column;
-   /* background-color: rgb(254,254,254,.05); */
    margin: 4px;
    height: 100%;
 }
@@ -172,7 +170,6 @@ a:hover {
    width: 100%;
    margin: 10px;
    min-height: 300px;
-   /* background-color: rgb(254,254,254,.05); */
    border-radius: 10px;
    position: relative;
 } 
@@ -257,7 +254,6 @@ a:hover {
    display: flex;
    justify-content: start;
    align-items: center;
-   /* flex-direction: column; */
 }
 .inbox__tasks__app {
    font-size: 16px;
@@ -301,9 +297,6 @@ a:hover {
 }
 .inbox__tasks__app__icon {
    font-size: 20px;
-}
-.inbox__tasks__app input:checked {
-   /* opacity: 1; */
 }
 .inbox__tasks__app input:checked + span {
    background-color: rgb(254,254,254,.3);
@@ -403,9 +396,6 @@ a:hover {
    min-height: 5vh;
    height: 70vh;
 }
-/* #NatureSounds audio {
-   display: none;
-} */
 
 .accounts {
    display: flex;
@@ -413,7 +403,6 @@ a:hover {
    align-items: center;
    flex-direction: column;
    width: 60vw;
-   /* height: 100vh; */
    min-height: 200px;
    position: fixed;
    top: 10%;
@@ -426,7 +415,6 @@ a:hover {
    display: none;
    opacity: 0;
    transition: all .3s linear;
-   /* box-shadow: 0 0 1000px 1000px rgb(20,20,20,.5); */
 }
 .accounts__header {
    display: flex;
@@ -490,7 +478,6 @@ table {
    justify-content: center;
    align-items: center;
    gap: 4px;
-   /* font-family: 'Wallpoet', cursive; */
    font-size: 20px;
 }
 #NatureSounds {
@@ -633,4 +620,7 @@ left:hover,right:hover {
    max-width: 120px;
    font-size: 18px;
 }
+ */
 
+
+ 

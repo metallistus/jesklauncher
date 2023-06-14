@@ -9,11 +9,7 @@
 
 {% block content %}
 <div class="page">
-   <div class="page__image__block">
-       <img src="{% static 'media/mounths1.jpg' %}" alt="" class="page__image">
-       <div class="page__image__mask"></div>
-   </div>
-   <div class="page__image__content">
+   <div class="page__content">
          {% include 'base/blocks/Inbox.html' %}
          {% include 'base/blocks/Today.html' %}
          {% include 'base/blocks/Calendar.html' %}

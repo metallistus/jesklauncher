@@ -1,7 +1,8 @@
 {% load static socialaccount account %}
 
 <div class="column calendar">
-   <div class="callender__top">
+   <h2>Calendar</h2>
+   {% comment %} <div class="callender__top">
       <div>
          <button  class="btn" id="theme"></button>
          <button class="btn btn--bold" id="open_account" >+</button>
@@ -40,11 +41,11 @@
          
       </div>
    </div>
-   {{service}}
+   {{service}} {% endcomment %}
 </div>
 
 <div class="accounts">
-   <div class="accounts__header">
+   {% comment %} <div class="accounts__header">
       <h2>Add More Accounts</h2>
       <button class="btn close__accounts"><i class="fa-solid fa-xmark"></i></button>
    </div>
@@ -75,12 +76,12 @@
          {% endfor %}
        </ul> {% endcomment %}
 
-     <a href="{% url 'socialaccount_connections' %}">Connect Social Account</a> 
-   </div>
+     {% comment %} <a href="{% url 'socialaccount_connections' %}">Connect Social Account</a> 
+   </div> {% endcomment %} 
 </div>
 
 <div class="callendar__bottom__panel">
-   <div class="callender__top">
+   {% comment %} <div class="callender__top">
       <button class="btn btn-primary" id="NatureSounds">
          <span id="NatureSoundsText" >00 : 00</span>
          <!-- <audio src="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}" id="NatureSoundsAudio" type="audio/mpeg" ></audio> -->
@@ -112,12 +113,12 @@
       </div>
 
       <button class="btn btn-primary" id="FocusMode">Focus mode</button>
-   </div>
-   <div class="callender__top">
-      <button class="btn btn-primary" id="FullScreen">Full Screen</button>
-      <button class="btn btn-primary" id="ChillMode">Chill mode</button>
-   </div>
-</div>
+      </div>
+      <div class="callender__top">
+         <button class="btn btn-primary" id="FullScreen">Full Screen</button>
+         <button class="btn btn-primary" id="ChillMode">Chill mode</button>
+      </div>
+   </div> {% endcomment %}
 </div>
 
 <script src="{% static 'js/calendar.js' %}" ></script>
