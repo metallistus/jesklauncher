@@ -1,20 +1,17 @@
 {% load static %}
 <div class="column today">
    <h3 class="column__title">Today</h3>
-   {% comment %} <div class="today__work" style=" height: 70vh"></div>
-   <div  class="today__pre__notes inbox__add__tasks" style=" height: 24vh">
-      <h3>
-         <span  class="inbox__add__tasks__notification__number">{{today_notes|length}}</span>
-         <!-- <span  class="inbox__tasks__menu__button fa-solid fa-circle-chevron-down" title="Show All Titles   " ></span> -->
-         <span  
-            class="inbox__todays__menu__button fa-solid fa-circle-chevron-down" 
-            title="Show All Titles   " 
-         ></span>
-         Today's notes: 
-      </h3>
-      <div class="">
-         <form action="" method="POST" class="inbox__add__tasks__form">
-            {% csrf_token %}
+   <div class="today__work" style=" height: 72vh"></div>
+   <form class="inbox__tasks inbox__today__tasks" action="" method="POST">
+      {% csrf_token %}
+      
+      <div class="inbox__add__tasks">
+         <h3>
+            <span  class="inbox__add__tasks__notification__number" >{{today_notes|length}}</span>
+            <span  class="inbox__tasks__menu__button fa-solid fa-circle-chevron-down" title="Show All Titles" ></span>
+            Today's notes:
+         </h3>
+         <div class="inbox__add__tasks__form">
             <input 
                type="text" 
                placeholder="Enter your today notes..." 
@@ -22,26 +19,31 @@
                value="todays_notes"
                style="display: none;"
             >
-         <input 
-            type="text" 
-            placeholder="Enter your today notes..." 
-            name="today_note_message"
-            class="add_note"
-         >
+            <input 
+               type="text" 
+               placeholder="Enter your today notes..." 
+               name="today_note_message"
+               class="add_note"
+            >
             <button class="btn" hidden>send</button>
-         </form>
-         <div class="today__notes">
-            {% for today_note in today_notes %}
-            <div class='note'>
-               {{today_note.message}}
-               <a class='note__delete' href="{%  url 'base:delete_today_note' today_note.id  %}">
-                  <i class="fa-solid fa-xmark"></i>
-               </a>
-            </div>
-            {% endfor %}
-         </div>
       </div>
-   </div> {% endcomment %}
+   </div>
+   <div class="inbox__show__tasks" style='height: 10vh'>
+      {% for todo in today_notes %}
+      <div class='note'>
+         {{todo.message}}
+         <a 
+            class='note__delete' 
+            href="{%  url 'base:delete_today_note' today_note.id  %}"
+         >
+         <span class="material-symbols-outlined">
+            close
+            </span>
+         </a>
+      </div>
+      {% endfor %}
+   </div>
+   </form>  
 </div>
 
 <script src="{% static 'js/openInToday.js' %}" ></script>

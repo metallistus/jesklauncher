@@ -59,7 +59,8 @@ body {
    top: 20vh;
    width: 100%;
    max-width: 500px;
-   background-color: #bc8f8f;
+   background-color: white;
+   border: 1px solid #202020;
    border-radius: 10px;
    padding: 8px 10px;
    
@@ -69,12 +70,15 @@ body {
 }
 .message_close {
    transition: all .3s ease-in-out;
+   cursor: pointer;
+
+   padding:  6px;
+   border-radius: 150px;
+   background-color: transparent;
 }
 .message_close:hover{
-   background-color: aliceblue;
-   color: #bc8f8f;
-   padding: 4px 6px;
-   border-radius: 150px;
+   background-color: #bc8f8f;
+   color: white;
 }
 
 /* chill mode */
@@ -167,10 +171,9 @@ body {
    background-color: rgb(254,254,254,.1);
 }
 ::-webkit-scrollbar-thumb {
-   background-color: rgb(137, 174, 223,.2);
-   color: rosybrown;
+   background-color: rgba(188,143,143,.2);
    border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-   background-color: rgb(137, 174, 223,.8);
+   background-color: rgba(188,143,143,.8)
 }

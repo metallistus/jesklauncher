@@ -117,6 +117,7 @@
     align-items: center;
     gap: 10px;
     margin: 6% 5%;
+    max-width: 700px;
 }
 .form__component {
     width: 100%;
@@ -139,7 +140,7 @@
     transition: all .3s linear;
 }
 .form__buttons a:hover {
-
+    
 }
 .form__buttons a i {
     font-size: 20px;

@@ -4,7 +4,7 @@ import requests
 def GoogleGmailService(email_list, access_token, get_email_text, get_header_value):
    responseEmail = requests.get('https://www.googleapis.com/gmail/v1/users/me/messages', params={
          'access_token': access_token,
-         'maxResults': 10
+         'maxResults': 20
       })
       
    # print('______________response______________', response)

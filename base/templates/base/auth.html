@@ -9,7 +9,11 @@
 {% block content %}
 <div class="page">
    <div class="page__left">
+      {% if page_type == 'sign-in' %}
       <img src="https://images.pexels.com/photos/2724664/pexels-photo-2724664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="mount">
+      {% else %}
+      <img src="https://images.pexels.com/photos/1643113/pexels-photo-1643113.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="mount">
+      {% endif %}
    </div>
    <form action="" method="POST" class="page__right">
       {% csrf_token %}

@@ -7,6 +7,7 @@
    width: 100%;
    height: 100vh;
 
+   overflow: hidden;
    position: relative;
 }
 .page__left {
@@ -19,6 +20,7 @@
    height: 100vh;
    z-index: -10;
 
+   overflow: hidden;
    position: absolute;
 }
 .page__content {
@@ -37,6 +39,8 @@
    justify-content: start;
    align-items: center;
    flex-direction: column;
+
+   overflow: hidden;
    width: 100%;
    height: 100vh;
 }
@@ -49,7 +53,7 @@
    width: 100%;
    max-width: 25%;
    
-   border-right: 1px solid rgb(20,20,20,.2);
+   border-right: 1px solid rgb(20,20,20,.4);
    transition: all .3s linear;
 }
 /* TODO:  Show messages, today notes */
@@ -65,7 +69,7 @@
    width: 100%;
    max-width: 25%;
 
-   border-left: 1px solid rgb(20,20,20,.2);
+   border-left: 1px solid rgb(20,20,20,.4);
    transition: all .3s linear;
 }
 
@@ -75,12 +79,15 @@
    justify-content: start;
    align-items: start;
    flex-direction: column;
+
    width: 100%;
-   padding: 0 5px 10px;
+   padding: 0 10px 10px;
    overflow-y: auto;
    height: 76vh;
-   border-bottom: 1px solid rgb(254,254,254,.3);
    transition: all .3s linear;
+
+   border-bottom: 1px solid rgb(20,20,20,.4);
+   border-top: 1px solid rgb(20,20,20,.4);
 }
 
 /*  ?  notification */
@@ -112,18 +119,20 @@
    justify-content: space-between;
    align-items: center;
    width: 100%;
-   gap: 5px
+   gap: 5px;
 }
 .notification__message {
    display: flex;
    justify-content: space-between;
    align-items: start;
    flex-direction: column;
+
    border-radius: 10px 10px 10px 0px ;
    padding: 4px 8px;
-   font-size: 17px;
+   font-size: 16px;
    max-width: 80%;
    width: 100%;
+   background-color: rgb(188, 143, 143, .1)
 }
 .notification__message__time {
    font-weight: bold;
@@ -142,12 +151,208 @@
    padding: 2px 4px;
    margin: 2px ;
    transition: all .3s linear;
-   background-color: rosybrown;
-   color: white;
+   /* background-color: rosybrown;
+   color: white; */
+   border: 1px solid rgb(20,20,20,.4);
+   color: rgb(20,20,20,.6);
 }
 .notification__links > a:hover {
-   background-color: rgb(142,191,254);
+   /* background-color: rgb(142,191,254); */
+   border: 1px solid rgb(20,20,20,.8);
+   color: rgb(20,20,20,.8);
 }
 .notification__text {
    display: none;
+}
+
+/* TODO: Add A New Task */
+.inbox__tasks {
+   width: 100%;
+}
+/* ? where do i need to send your message */
+.inbox__tasks__apps {
+   width: 100%;
+   border-bottom: 1px solid rgb(20,20,20,.1);
+   gap:10px;
+   padding: 8px 6px;
+
+   display: flex;
+   justify-content: start;
+   align-items: center;
+}
+.inbox__tasks__app {
+   font-size: 16px;
+   padding: 4px 6px ;
+   position: relative;
+   border-radius: 10px;
+   max-width: 80px;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+   border: 1px solid rgb(20,20,20,.4);
+   color: rgb(20,20,20,.6);
+
+   height: 24px;
+   transition: all .3s linear;
+   cursor: pointer;
+}
+.inbox__tasks__app:hover {
+   border: 1px solid rgb(20,20,20,.8);
+   color: rgb(20,20,20,.8);
+}
+.inbox__tasks__app input {
+   position: absolute;
+   width: 100%;
+   z-index: 1;
+   left: 10%;
+   opacity: 0;
+   height: 24px;
+}
+.inbox__tasks__app span {
+   width: 100%;
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   max-width: 80px;
+   width: 100%;
+   height: 24px;
+   transition: all .3s linear;
+   gap: 5px;
+   color: rgb(20,20,20,.6);
+}
+.inbox__tasks__app span img {
+   width: 18px;
+   height: 18px;
+}
+.inbox__tasks__app__icon {
+   font-size: 20px;
+}
+.inbox__tasks__app input:hover + span {
+   color: rgb(20,20,20,.8);
+}
+.inbox__tasks__app input:checked + span {
+   background-color: rgb(188, 143, 143, .8);
+   box-shadow: 0 0  5px 1px rgb(188, 143, 143, .8);
+}
+
+/* ? add tasks */
+.inbox__add__tasks {
+   padding: 2.8px 6px;
+}
+.inbox__add__tasks h3 {
+   font-size: 18px;
+   margin-bottom: 4px;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+}
+.inbox__add__tasks__form {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}
+.inbox__add__tasks__form input {
+   background-color: rgb(188, 143, 143, .1);
+   font-size: 16px;
+   width: 100%;
+   padding: 8px 6px ;
+   border-radius: 10px;
+}
+.inbox__add__tasks__form input:focus {
+   background-color: rgb(188, 143, 143, .3);
+}
+
+.inbox__add__tasks__form input::placeholder {
+   color: rgb(20,20,20,.6)
+}
+.inbox__add__tasks__notification__number {
+   font-size: 16px;
+   border-radius: 10px;
+   padding: 0px 6px;
+   margin-right: 4px;
+   background-color: rgba(188,143,143,.2);
+}
+.inbox__tasks__menu__button {
+   margin: 0 6px;   
+}
+/* show tasks  */
+.inbox__show__tasks {
+   overflow-y: auto;
+   width: 100%;
+   height: 10vh;
+   min-height: 5vh;
+   padding: 0px 6px;
+   transition:  all .3s linear;
+}
+
+/* show one task */
+.note {
+   padding: 4px 8px;
+   background-color: rgba(188,143,143,.2);
+   border-radius: 10px;
+   margin: 6px 0;
+   font-size: 16px;
+   display: flex;
+   justify-content: space-between;
+   align-items: start;
+   width: 100%;
+}
+.note__delete {
+   border-radius: 100%;
+
+   border: 1px solid rgb(20,20,20,.4);
+   padding: 0 6px;
+   transition:  all .3s linear;
+}
+.note__delete span {
+   font-size: 12px;
+   font-weight: 400;
+   transition:  all .3s linear;
+   color: rgb(20,20,20,.5);
+}
+.note__delete:hover {
+   border-color: rgb(20,20,20,.8);
+}
+.note__delete:hover span {
+   color: rgb(20,20,20,.8);
+}
+
+/* ? Today */
+.today__work {
+   width: 100%;
+   height: 76vh;
+   
+   overflow: hidden;
+   overflow-y: scroll;
+
+   padding: 10px;
+   transition: all .3s linear;
+
+   border-bottom: 1px solid rgb(0,0,0,.3);
+   border-top: 1px solid rgb(0,0,0,.3);
+}
+
+/* calendar top */
+.callender__top {
+   display: grid;
+   grid-template-columns: 1fr 1fr 2fr 1fr;
+   align-items: center;
+   width: 100%;
+   padding: 0 4px;
+   border-radius: 10px;
+   gap:5px;
+   margin-bottom: 1px solid rgb(20,20,20,.3);
+}
+.callender__top span {
+   max-width: 120px;
+   font-size: 14px;
+   white-space: pre-wrap;  
+}
+.callender__top a {
+   font-size: 16px;
 }

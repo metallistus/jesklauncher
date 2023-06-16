@@ -1,16 +1,13 @@
 {% load static socialaccount account %}
 
 <div class="column calendar">
-   <h3>Calendar</h3>
-   {% comment %} <div class="callender__top">
-      <div>
-         <button  class="btn" id="theme"></button>
-         <button class="btn btn--bold" id="open_account" >+</button>
-         <h3 class="callendar__top__username">{{ request.user.email }}</h3>
-      </div>
-      <a href="{% url 'base:sign-out' %}" class="btn ">Sign Out</a>
+   <div class="callender__top">
+      <a id="theme"></a>
+      <a id="open_account" >+</a>
+      <span>{{ request.user.email }}</span>
+      <a href="{% url 'base:sign-out' %}">Sign Out</a>
    </div>
-   <div class="callendar__sound">
+   {% comment %} <div class="callendar__sound">
    </div>
    <div class="calendar__place" >
      <div class="callendar__place__header" id="callendar__header"></div>

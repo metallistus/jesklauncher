@@ -34,7 +34,7 @@
       </div>
    {% endfor %}
    </div>
-   {% comment %} <form class="inbox__tasks" action="" method="POST">
+   <form class="inbox__tasks" action="" method="POST">
       {% csrf_token %}
       <div class="inbox__tasks__apps">
          <div class="inbox__tasks__app">
@@ -78,15 +78,20 @@
             <button class="btn" hidden>send</button>
       </div>
    </div>
-   <div class="inbox__show__tasks">
+   <div class="inbox__show__tasks" style='height: 10vh'>
       {% for todo in todos %}
       <div class='note'>
          {{todo.message}}
-         <a class='note__delete' href="{%  url 'base:task_delete' todo.id  %}">
-            <i class="fa-solid fa-xmark"></i>
+         <a 
+            class="note__delete" 
+            href="{%  url 'base:task_delete' todo.id  %}"
+         >
+         <span class="material-symbols-outlined">
+            close
+            </span>
          </a>
       </div>
       {% endfor %}
    </div>
-   </form>  {% endcomment %}
+   </form>  
 </div>
