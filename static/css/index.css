@@ -1,83 +1,75 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Black+Ops+One&family=Wallpoet&display=swap');
+.page {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
 
-.page__image__content {
-   display: grid;
    width: 100%;
-   grid-template-columns: 1fr 2fr 1fr;
+   height: 100vh;
+
+   position: relative;
 }
-@media screen and (max-width: 600px) {
-   .page__image__content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-   }
-   .inbox{
-      position: fixed;
-      height: 100vh;
-      background-color: rgb(0,0,0,.8  );
-      z-index: 10 !important;
-      display: none !important;
-      width: 25vw;
-      width: 100%;
-   }
-   .column {
-      margin: 0 !important;
-      width: 100% !important;
-   }
-   .calendar  {
-      display: none !important;
-      width: 25vw;
-      width: 100%;
-   }
-   .callendar__bottom__panel {
-      display: none !important;
-   }
+.page__left {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+   width: 100vw;
+   height: 100vh;
+   z-index: -10;
+
+   position: absolute;
 }
+.page__content {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   
+   width: 100vw;
+   height: 100vh;
+   overflow-x: hidden;
+}
+
+/* ? one column */
 .column {
    display: flex;
    justify-content: start;
    align-items: center;
    flex-direction: column;
-   margin: 4px;
-   height: 100%;
-}
-.column__title {
    width: 100%;
-   border-bottom: 1px solid rgb(254,254,254, .4);
-   text-align: center;
-   padding-bottom: 5px;
-}
-a:hover {
-   color: white;
+   height: 100vh;
 }
 
-.callender__top {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   margin: 3px 0;
+/* TODO: Inbox for messages, 
+   TODO:           notifications, 
+   TODO:           buttons for show and reply,
+   TODO:           tasks */
+.inbox {
    width: 100%;
-   padding: 0 6px;
-   border-radius: 10px;
-   gap:5px;
+   max-width: 25%;
+   
+   border-right: 1px solid rgb(20,20,20,.2);
+   transition: all .3s linear;
 }
-.callender__top div {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 10px
+/* TODO:  Show messages, today notes */
+.today {
+   width: 100%;
+   max-width: 50%;
+
+   transition: all .3s linear;
 }
 
-.btn-primary {
+/* TODO:  Sign Out, UserName, Include Social Medias and other */
+.calendar {
    width: 100%;
-   max-width: 100%;
-   background-color: rgba(200, 200, 200, 0.2);
-   height: 46px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+   max-width: 25%;
+
+   border-left: 1px solid rgb(20,20,20,.2);
+   transition: all .3s linear;
 }
+
+/*  ? notifications */
 .column__notifications {
    display: flex;
    justify-content: start;
@@ -91,10 +83,7 @@ a:hover {
    transition: all .3s linear;
 }
 
-.column__notifications::-webkit-scrollbar {
-   
-}
-
+/*  ?  notification */
 .notification {
    width: 100%;
    display: flex;
@@ -103,6 +92,7 @@ a:hover {
    flex-direction: column;
    margin-bottom: 5px;
 }
+/*  ? notification header*/
 .notification__header {
    display: flex;
    justify-content: start;
@@ -110,11 +100,12 @@ a:hover {
    align-items: center;
 }
 .notification__header img {
-   width: 18px;
-   height: 18px;
+   width: 16px;
+   height: 16px;
 }
 .notification__header span {
-   font-size: 16px;
+   font-size: 14px;
+   font-weight: bold;
 }
 .notification__body {
    display: flex;
@@ -128,7 +119,6 @@ a:hover {
    justify-content: space-between;
    align-items: start;
    flex-direction: column;
-   background-color: rgb(254,254,254,.05);
    border-radius: 10px 10px 10px 0px ;
    padding: 4px 8px;
    font-size: 17px;
@@ -138,7 +128,6 @@ a:hover {
 .notification__message__time {
    font-weight: bold;
    font-size: 13px;
-   color: #fff;
    width: 100%;
    text-align: end;
 }
@@ -149,478 +138,16 @@ a:hover {
 }
 .notification__links > a {
    font-size: 14px; 
-   color: #fff;
-   background-color: rgb(254,254,254,.05);
    border-radius: 10px;
    padding: 2px 4px;
    margin: 2px ;
-   transition: all .3s linear ;
+   transition: all .3s linear;
+   background-color: rosybrown;
+   color: white;
 }
 .notification__links > a:hover {
-   background-color: rgb(254,254,254,.1);
-   color: rosybrown;
-   box-shadow: 0 0 5px 1px rgb(254,254,254,.1);
+   background-color: rgb(142,191,254);
 }
-
-.callendar__place {
-   display: flex;
-   justify-content: start;
-   align-items: end;
-   flex-direction: column;
-   width: 100%;
-   margin: 10px;
-   min-height: 300px;
-   border-radius: 10px;
-   position: relative;
-} 
-.calendar {
-   position: relative;
-}
-.callendar__place select option {
-   color: black
-}
-.callendar__place__content, .callendar__place__content2 {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   padding: 6px 4px;
-   width: 100%;
-   position: relative;
-
-}
-
-.motivateText {
-   width: 100%;
-   height: 100%;
-   font-size: 22px;
-   background-color: transparent;
-   max-width: 100%;
-   min-width: 100%;
-   max-height: 300px;
-   color: aliceblue;
-   padding: 4px;
-   background-color: rgb(254,254,254,.2);
-   border-radius: 10px;
-   text-align: center;
-}
-.motivateImage {
-   height: 100%;
-   max-width: 100%;
-   object-fit: cover;
-   max-height: 200px;
-   opacity: 90%;
-   border-radius: 4px;
-   transition: all .3s linear;
-   cursor: zoom-in;
-}
-
-#upload_motivate_image {
-   opacity: 0;
-   display: none;
-   transition: all .3s easy;
-   font-size: 16px;
-   margin: 5px 0;
-   width: 100%;
-   padding: 0 4px;
-}
-
-.callendar__bottom__panel {
-   position: fixed;
-   bottom: 0;
-   width: 25vw;
-   right: 0;
-}
-
-.today {
-   width: 100%;
-   background-color: rgb(254,254,254,.05);
-   padding: 0 4px;
-   width: 50vw;
-}
-.inbox, .calendar, .today  {
-   transition: all .3s linear;
-}
-
-.inbox__tasks {
-   width: 100%;
-   padding: 4px;
-}
-.inbox__tasks__apps {
-   width: 100%;
-   border-bottom: 1px solid rgb(254,254,254,.3);
-   gap:10px;
-   padding: 8px 2px;
-   display: flex;
-   justify-content: start;
-   align-items: center;
-}
-.inbox__tasks__app {
-   font-size: 16px;
-   padding: 2px 4px ;
-   color: white;
-   width: 100%;
-   position: relative;
-   border-radius: 10px;
-   max-width: 80px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   height: 24px;
-   background-color:  rgb(254,254,254,.1);
-   transition: all .3s linear;
-   cursor: pointer;
-}
-.inbox__tasks__app:hover {
-   background-color: rgb(254,254,254,.15);
-}
-.inbox__tasks__app input {
-   position: absolute;
-   width: 100%;
-   z-index: 1;
-   left: 10%;
-   opacity: 0;
-   height: 24px;
-}
-.inbox__tasks__app span {
-   width: 100%;
-   border-radius: 10px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   max-width: 80px;
-   width: 100%;
-   height: 24px;
-   transition: all .3s linear;
-   gap: 5px
-}
-.inbox__tasks__app__icon {
-   font-size: 20px;
-}
-.inbox__tasks__app input:checked + span {
-   background-color: rgb(254,254,254,.3);
-   box-shadow: 0 0  5px 1px rgb(0,0,0,.1);
-}
-
-.inbox__add__tasks {
-   padding: 4px 0;
-}
-.inbox__add__tasks h3 {
-   font-size: 18px;
-   margin-bottom: 4px;
-   display: flex;
-   align-items: center;
-   justify-content: start;
-}
-.inbox__add__tasks__form {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-   gap: 4px;
-}
-.inbox__add__tasks__form input {
-   background-color: rgb(254,254,254,.1);
-   font-size: 16px;
-   width: 100%;
-   padding: 8px 6px ;
-   color: white;
-   border-radius: 10px;
-}
-.inbox__add__tasks__form input::placeholder {
-   color: rgb(254,254,245,.5)
-}
-.inbox__add__tasks__notification__number {
-   font-size: 16px;
-   border-radius: 10px;
-   padding: 0px 6px;
-   margin-right: 4px;
-   background-color: rgb(137, 174, 223,.8);
-}
-
-.today__work {
-   width: 100%;
-   height: 70vh;
-   overflow-y: scroll;
-   border-bottom: 1px solid rgb(254,254,254,.3);
-   max-width: 60vw;
-   padding: 10px;
-   transition: all .3s linear;
-}
-.today__pre__notes {
-      width: 100%;
-      overflow-y: auto;
-      padding: 0 4px;
-      height: 24vh;
-      min-width: 100%;
-      transition: all .3s linear;
-}
-.today__notes {
-   margin-bottom: 10%;
-}
-.note {
-   padding: 4px;
-   background-color: rgb(254,254,254,.05);
-   border-radius: 10px;
-   margin: 6px 0;
-   font-size: 18px;
-   display: flex;
-   justify-content: space-between;
-   align-items: start;
-   width: 100%;
-}
-.note__delete {
-   color: rgb(254,254,254,.5);
-   transition:  all .3s linear;
-   font-weight: bold;
-   font-size: 20px;
-}
-.note__delete:hover {
-   color: rosybrown;
-}
-.inbox__tasks__menu__button, .inbox__todays__menu__button {
-   font-size: 24px;
-   transition: all .3s linear;
-   margin: 0 5px;
-}
-.inbox__tasks__menu__button:hover, .inbox__todays__menu__button:hover {
-   color: rgb(137, 174, 223,.8);
-   cursor: pointer;
-}
-
-.inbox__show__tasks {
-   overflow-y: auto;
-   width: 100%;
-   height: 100%;
-   min-height: 5vh;
-   height: 70vh;
-}
-
-.accounts {
-   display: flex;
-   justify-content: start;
-   align-items: center;
-   flex-direction: column;
-   width: 60vw;
-   min-height: 200px;
-   position: fixed;
-   top: 10%;
-   left: 20vw;
-   right: 20vw;
-   z-index: 12;
-   background-color: rgb(20,20,20,.6);
-   border-radius: 10px;
-
-   display: none;
-   opacity: 0;
-   transition: all .3s linear;
-}
-.accounts__header {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-   padding: 6px 10px;
-}
-.accounts__body {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 10px;
-   row-gap: 10px;
-   flex-wrap: wrap;
-}
-.accounts__body__icon {
-   font-size: 30px;
-}
-.icon {
-   font-size: 40px !important ;
-   color: white;
-   transition: all .3s linear;
-}
-.icon:hover {
-   color: rosybrown;
-}
-
-.calendar__place {
-   width: 100%;
-}
-table {
-   border-collapse: collapse;
-   width: 100%;
- }
- td,
- th {
-   border: 1px solid rgb(254,254,254,.1);
-   padding: 3px;
-   text-align: center;
- }
-
- th {
-   font-weight: bold;
-   background-color: rgb(137, 174, 223,.8);
- }
-
- td {
-   transition: all .3s linear;
- }
- td:hover{ 
-   background-color: rgb(254,254,254,.1);
-   cursor: pointer
- }
- .calendar__place__body {
-   width: 100%;
- }
- 
-#NatureSoundsText {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 4px;
-   font-size: 20px;
-}
-#NatureSounds {
-   width: 100%;
-}
-.callendar__window {
-   position: fixed;
-   max-width: 25vw;
-   width: 100%;
-   background-color: rgb(254,254,254,.3);
-   padding: 10px 10px;
-   border-radius: 10px;
-   z-index: 10;
-   bottom: 98px;
-   right: 0;
-
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-
-   display: none;
-   opacity: 0;
-   transition: all .3s ease-in-out;
-}
-.callender__window__header {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   font-size: 24px;
-}
-.callendar__window__music {
-   display: flex;
-   justify-content: start;
-   align-items: start;
-   flex-direction: column;
-   width: 100%;
-}
-.callendar__window__music audio {
-   width: 100%;
-   background-color: #fff;
-}
-.callendar__window__buttons {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-}
-
-select {
-   width: 100%;
-   background-color: transparent;
-   border: 1px solid white;
-   padding: 4px 6px;
-   border-radius: 10px;
-   font-size: 18px;
-   color: white;
-   cursor: pointer;
-   transition: all .3s linear;
-}
-select:hover{
-   color: rosybrown;
-   border-color: rosybrown;
-}
-
-.callendar__window__timer {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-}
-.callendar__window__timer input {
-   width: 100%;
-   padding: 4px 6px;
-   font-size: 22px;
-   background-color: transparent;
-   color: white;
-   border: none;
-   background-color: rgb(254,254,254,.2);
-   border-radius: 10px;
-}
-.window__timer {
-   font-size: 30px;
-}
-audio {
-   border-radius: 10px;
-   background-color: white;
-}
-#callendar__header {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-   padding: 0px 10px;
-}
-left, right {
-   font-size: 34px;
-   font-weight: 600;
-   transition: all .3s linear;
-   cursor: pointer;
-}
-left:hover,right:hover {
-   color: rgb(137, 174, 223,.8);
-   border-radius: 100px;
-   padding: 0 4px;
-   background-color: white;
-}
-
-.callendar__place__header h3 {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 5px
-}
-.callendar__place__input {
-   width: 100%;
-   max-width: 60px;
-   background-color: transparent;
-   color: white;
-   border-radius: 10px;
-   border: 2px solid white;
-   font-size: 16px;
-   padding: 4px;
-   font-weight: bold;
-}
-.callendar__place__input:hover {
-   border-color: rosybrown;
-}
-.callendar__place__input:focus {
-   border-color: rosybrown;
-}
-
 .notification__text {
    display: none;
 }
-
-.callendar__top__username {
-   white-space: pre-line;
-   word-wrap: break-word;
-   max-width: 120px;
-   font-size: 18px;
-}
- */
-
-
- 

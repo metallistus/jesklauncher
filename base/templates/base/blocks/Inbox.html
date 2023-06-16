@@ -1,8 +1,8 @@
 {% load static %}
 <div class="column inbox">
-   <h2 class="column__title">Inbox</h2>
+   <h3 class="column__title">Inbox</h3>
 
-   {% comment %} <div class="column__notifications">
+   <div class="column__notifications">
    {% for email in emails %}
       <div class="notification">
          <div class="notification__header">
@@ -34,7 +34,7 @@
       </div>
    {% endfor %}
    </div>
-   <form class="inbox__tasks" action="" method="POST">
+   {% comment %} <form class="inbox__tasks" action="" method="POST">
       {% csrf_token %}
       <div class="inbox__tasks__apps">
          <div class="inbox__tasks__app">
@@ -88,5 +88,5 @@
       </div>
       {% endfor %}
    </div>
-   </form> {% endcomment %}
+   </form>  {% endcomment %}
 </div>
