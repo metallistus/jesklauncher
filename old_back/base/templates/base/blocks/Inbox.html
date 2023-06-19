@@ -1,6 +1,9 @@
 {% load static %}
 <div class="column inbox">
-   <h2 class="column__title">Inbox</h2>
+   <h2 
+      class="column__title"
+      style = "border-bottom: 1px solid rgb(20,20,20,.3)"
+   >Inbox</h2>
 
    <div class="column__notifications">
    {% for email in emails %}

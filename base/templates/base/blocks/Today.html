@@ -1,7 +1,14 @@
 {% load static %}
 <div class="column today">
-   <h3 class="column__title">Today</h3>
-   <div class="today__work" style=" height: 72vh"></div>
+   <h3 
+      class="column__title"
+      style = "border-bottom: 1px solid rgb(20,20,20,.3)"
+   >Today</h3>
+   <div class="today__work" style=" height: 72vh; border-bottom: 1px solid rgb(20,20,20,.3)">
+      <div class='today__work__notfound'>
+         Messages Not Found
+      </div>
+   </div>
    <form class="inbox__tasks inbox__today__tasks" action="" method="POST">
       {% csrf_token %}
       

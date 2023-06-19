@@ -1,41 +1,64 @@
-/* <i class="fa-regular fa-sun"></i> */
 
-const theme = document.querySelector('#theme')
-const page__image__mask = document.querySelector('.page__image__mask')
+const borderBottomElements = document.querySelectorAll('[style*="border-bottom: 1px solid rgb(20,20,20,.3)"]')
+const borderRightElements = document.querySelectorAll('[style*="border-right: 1px solid rgb(20,20,20,.3)"]')
+const borderLeftElements = document.querySelectorAll('[style*="border-left: 1px solid rgb(20,20,20,.3)"]')
+const borderElements = document.querySelectorAll('[style*="border: 1px solid rgb(20,20,20,.3)"]')
 
-const chill__mode = document.querySelector('.chill__mode')
-const chill__mode__exit = document.querySelector('.chill__mode__exit')
+// elements 
+const inputElements = document.querySelectorAll('input')
+const aElements = document.querySelectorAll('a')
+
+// panel
+const accountsElements = document.querySelectorAll('.accounts')
 
 
-if (localStorage.getItem('theme')) {
-   show_theme(localStorage.getItem('theme'))
-} else {
-   show_theme('light')
-}
+console.log(borderRightElements)
 
-theme.onclick = () => {
-   if (page__image__mask.style.backgroundColor === 'rgba(0, 0, 0, 0.6)') {
-      show_theme('light')
-      localStorage.setItem('theme', 'light')
+// event listener
+document.getElementById('theme').addEventListener('click', () => {
+   if (document.body.style.color == 'ghostwhite') {
+      // ____________ white theme ______________
+
+      document.body.style.color = '#202020'
+      document.body.style.backgroundColor = 'ghostwhite'
+
+      changeStyle('1px solid rgb(0,0,0,.3)',borderBottomElements, 'borderBottom')
+      changeStyle('1px solid rgb(0,0,0,.3)',borderRightElements, 'borderRight')
+      changeStyle('1px solid rgb(0,0,0,.3)',borderLeftElements, 'borderLeft')
+      changeStyle('1px solid rgb(0,0,0,.3)',borderElements, 'border')
+
+      changeStyle('#202020',inputElements, 'color')
+      changeStyle('#202020',aElements, 'color')
+
+      changeStyle('ghostwhite',accountsElements, 'backgroundColor')
+
    } else {
-      show_theme('dark')
-      localStorage.setItem('theme', 'dark')
+      // ____________ black theme ___________
+
+      document.body.style.color = 'ghostwhite'
+      document.body.style.backgroundColor = '#202020'
+
+      changeStyle('1px solid rgb(248, 248, 255, .3)',borderBottomElements, 'borderBottom')
+      changeStyle('1px solid rgb(248, 248, 255, .3)',borderRightElements, 'borderRight')
+      changeStyle('1px solid rgb(248, 248, 255, .3)',borderLeftElements, 'borderLeft')
+      changeStyle('1px solid rgb(248, 248, 255, .3)',borderElements, 'border')
+
+      changeStyle('ghostwhite',inputElements, 'color')
+      changeStyle('ghostwhite',aElements, 'color')
+
+      changeStyle('#202020',accountsElements, 'backgroundColor')
    }
-}
+})
 
-
-function show_theme(style) {
-   if (style === 'dark') {
-      theme.innerHTML = '<i class="fa-regular fa-moon"></i>'
-      page__image__mask.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-
-      chill__mode.style.backgroundColor = 'rgba(0, 0, 0, 1)'
-      chill__mode__exit.style.color = 'white';
-   } else {
-      theme.innerHTML = '<i class="fa-regular fa-sun"></i> '
-      page__image__mask.style.backgroundColor ='rgba(255, 255, 255, 0.3)'
-
-      chill__mode.style.backgroundColor = 'rgba(255, 255, 255, 1)'
-      chill__mode__exit.style.color = 'white';
+// Change style
+function changeStyle(
+   color = 'rgb(20,20,20,.3)', 
+   elements = [],
+   option = null
+) {
+   for (let element of elements) {
+      if (option) {
+         element.style[option] = color
+      }
    }
 }

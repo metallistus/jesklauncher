@@ -1,104 +1,44 @@
-// Full Screen
-const FullScreen = document.getElementById('FullScreen')
 
-const chill_mode_title = document.querySelector('.chill__phone__intro__title')
-const chill_mode_date = document.querySelector('.chill__phone__date')
-const chill_mode_time = document.querySelector('.chill__phone__time')
+// const chill_mode_title = document.querySelector('.chill__phone__intro__title')
+// const chill_mode_date = document.querySelector('.chill__phone__date')
+// const chill_mode_time = document.querySelector('.chill__phone__time')
 
-// const NatureSoundsAudio = document.querySelector('#NatureSoundsAudio')
+// // const NatureSoundsAudio = document.querySelector('#NatureSoundsAudio')
 
+// // Chill Mode
+// const open_chill_mode = document.getElementById('ChillMode')
+// const chill_mode = document.getElementById('chill__mode')
+// const close_chill_mode = document.querySelector('.close__chill__mode')
 
-FullScreen.onclick = () => {
-   if (document.documentElement.requestFullscreen()) {
-      document.exitFullscreen()
-   } else{
-      document.documentElement.requestFullscreen()
-   }
-}
+// if (localStorage.getItem('chillModedisplay')) {
+//    chill_mode.style.display = localStorage.getItem('chillModedisplay')
+// }
+// if (localStorage.getItem('chillModeOpacity')) {
+//    chill_mode.style.opacity = localStorage.getItem('chillModeOpacity')
+// }
 
-// Chill Mode
-const open_chill_mode = document.getElementById('ChillMode')
-const chill_mode = document.getElementById('chill__mode')
-const close_chill_mode = document.querySelector('.close__chill__mode')
+// open_chill_mode.onclick = () => {
+//    chill_mode.style.display = 'flex';
+//    localStorage.setItem('chillModedisplay','flex')
+//    NatureSoundsAudio.play()
 
-if (localStorage.getItem('chillModedisplay')) {
-   chill_mode.style.display = localStorage.getItem('chillModedisplay')
-}
-if (localStorage.getItem('chillModeOpacity')) {
-   chill_mode.style.opacity = localStorage.getItem('chillModeOpacity')
-}
+//    setTimeout(() => {
+//       chill_mode.style.opacity = '1'
+//       localStorage.setItem('chillModeOpacity','1')
+//       chill_mode.style.animation = 'gradient'
+//    }, 300)
+// }
 
-open_chill_mode.onclick = () => {
-   chill_mode.style.display = 'flex';
-   localStorage.setItem('chillModedisplay','flex')
-   NatureSoundsAudio.play()
-
-   setTimeout(() => {
-      chill_mode.style.opacity = '1'
-      localStorage.setItem('chillModeOpacity','1')
-      chill_mode.style.animation = 'gradient'
-   }, 300)
-}
-
-close_chill_mode.onclick = () => {
-   chill_mode.style.animation = 'kill-gradient'
-   
-   setTimeout(() => {
-      chill_mode.style.opacity = '0'
-      localStorage.setItem('chillModeOpacity','0')
-      chill_mode.style.display = 'none';
-      NatureSoundsAudio.pause()
-      localStorage.setItem('chillModedisplay','none')
-   }, 1000)
-}
-
-// function renderTime () {
-//    let date = new Date()
-//    let dayOfWeek = date.getDay();
-
-//    let weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-//    let weekdayName = weekdays[dayOfWeek]
-   
-//    chill_mode_title.innerHTML = `${weekdayName}`
-//    chill_mode_date.innerHTML = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-//    chill_mode_time.innerHTML = `-- ${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()} --`
+// close_chill_mode.onclick = () => {
+//    chill_mode.style.animation = 'kill-gradient'
    
 //    setTimeout(() => {
-//       renderTime()
+//       chill_mode.style.opacity = '0'
+//       localStorage.setItem('chillModeOpacity','0')
+//       chill_mode.style.display = 'none';
+//       NatureSoundsAudio.pause()
+//       localStorage.setItem('chillModedisplay','none')
 //    }, 1000)
-// }
-// renderTime()
-
-// setInterval(() => {
-//    console.log(date.getSeconds())
-//    chill_mode_time.innerHTML = `-- ${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()} --`
-// }, 1000)
-
-// let date = new Date()
-// let now_day = date.getDate()
-
-// const callendar__datas = document.querySelector('.callendar__datas')
-// const week__names = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
-
-// function calendar__render() {
-//    for (let week__name of week__names) {
-//       callendar__datas.innerHTML += `<span class='callendar__week'>${week__name}</span>`
-//    }
-
-//    for (let i = 1; i <=31; i ++) {
-//       callendar__datas.innerHTML += `
-//       <span class='callendar__data ${now_day == i? 'spec': '' }'>${now_day == i? now_day: i }</span>
-//       `
-//    }
-// }
-
-// calendar__render()
-// const callendar__data__all = document.querySelectorAll('.callendar__data')
-
-// for (let callendar__data of callendar__data__all) {
-//    callendar__data.addEventListener('click', () => {
-//       console.log(callendar__data.innerHTML)
-//    })
 // }
 
 function createCalendar(elem, year, month) {
@@ -106,7 +46,7 @@ function createCalendar(elem, year, month) {
    let mon = month - 1; // месяцы в JS идут от 0 до 11, а не от 1 до 12
    let d = new Date(year, mon);
 
-   let table = '<table><tr><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr><tr>';
+   let table = '<table><tr class="first_tr"><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr><tr>';
 
    // пробелы для первого ряда
    // с понедельника до первого дня месяца
