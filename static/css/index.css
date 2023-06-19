@@ -44,6 +44,13 @@
    width: 100%;
    height: 100vh;
 }
+.column__title {
+   height: 34px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+}
 
 /* TODO: Inbox for messages, 
    TODO:           notifications, 
@@ -103,8 +110,8 @@
 .notification__header {
    display: flex;
    justify-content: start;
-   gap: 10px;
    align-items: center;
+   gap: 10px;
 }
 .notification__header img {
    width: 16px;
@@ -241,7 +248,7 @@
 
 /* ? add tasks */
 .inbox__add__tasks {
-   padding: 2.8px 6px;
+   padding: 0 6px;
 }
 .inbox__add__tasks h3 {
    font-size: 18px;
@@ -340,19 +347,19 @@
 /* calendar top */
 .callender__top {
    display: grid;
+   height: 34px;
    grid-template-columns: 1fr 1fr 2fr 1fr;
    align-items: center;
    width: 100%;
    padding: 0 4px;
-   border-radius: 10px;
    gap:5px;
-   margin-bottom: 1px solid rgb(20,20,20,.3);
+   border-bottom: 1px solid rgb(20,20,20,.3);
 }
 .callender__top span {
-   max-width: 120px;
    font-size: 14px;
    white-space: pre-wrap;  
 }
 .callender__top a {
    font-size: 16px;
+   padding: 4px 6px;
 }
