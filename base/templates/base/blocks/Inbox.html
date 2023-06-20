@@ -26,10 +26,10 @@
                <span class="notification__message__time">{{ email.created_time }}</span>
             </div>
             <div class="notification__links">
-               <a href="{{ email.link }}" target="_blank">Show</a>
+               <a href="{{ email.link }}" target="_blank" style="border: 1px solid rgb(20,20,20,.3)">Show</a>
                {% if email.type == 'gmail'  %}
-                  <a href="">Reply</a>
-                  <a href="">Forward</a>
+                  <a href="" style="border: 1px solid rgb(20,20,20,.3)">Reply</a>
+                  <a href="" style="border: 1px solid rgb(20,20,20,.3)">Forward</a>
                {% endif %}
             </div>
             <span class="notification__text" >{{email.text}}</span>
@@ -77,7 +77,7 @@
             <button class="btn" hidden>send</button>
       </div>
    </div>
-   <div class="inbox__show__tasks" style='height: 10vh'>
+   <div class="inbox__show__tasks" style='height:10vh'>
       {% for todo in todos %}
       <div class='note'>
          {{todo.message}}
@@ -85,7 +85,7 @@
             class="note__delete" 
             href="{%  url 'base:task_delete' todo.id  %}"
          >
-         <span class="material-symbols-outlined">
+         <span class="material-symbols-outlined"  style="border: 1px solid rgb(20,20,20,.3)">
             close
             </span>
          </a>

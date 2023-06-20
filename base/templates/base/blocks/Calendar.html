@@ -11,6 +11,9 @@
          <a id="theme">
             <i class='fa-regular fa-sun'></i>
          </a>
+         <a id="changeBackImage">
+            <i class="fa-sharp fa-regular fa-images"></i>
+         </a>
          <a id="open_account" >+</a>
       </div>
       <a href="{% url 'base:sign-out' %}">Sign Out</a>
@@ -50,6 +53,40 @@
          
       </div>
    </div> {% endcomment %}
+   <div class="callender__panel">
+     <div class="callender__panel__top">
+         <a id="NatureSounds">
+            00 : 00
+         </a>
+   
+        <div class="callendar__window" style="display:none; opacity: 0">
+            <div class="callendar__window__timer">
+               <div class="window__timer">
+                  <input type="number" id="getMinutes" value="0" />
+                  <input type="number" id="getSeconds" value="0" />
+               </div>
+               <button class="btn" id="runTimer" ><i class="fa-solid fa-play"></i></button>
+               <button class="btn" id="restartTime" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
+            </div>
+            <div class="callendar__window__music">
+               <audio src="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}" id="NatureSoundsAudio" type="audio/mpeg" controls></audio>
+               <select name="" id="NatureSoundsSelect">
+                  <option value="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}">Sound 1</option>
+                  <option value="{% static '/media/sounds/Evening-Improvisation-with-Ethera.mp3' %}">Sound 2</option>
+                  <option value="{% static '/media/sounds/jackmichaelking__gentle-ocean-waves-birdsong-and-gull.mp3' %}">Sound 3</option>
+                  <option value="{% static '/media/sounds/Rain-Sound-and-Rainforest.mp3' %}">Sound 4</option>
+               </select>
+            </div>
+         </div> 
+   
+         <a id="FocusMode">Focus mode</a>
+         </div>
+         <div class="callender__panel__top">
+            <a id="FullScreen">Full Screen</a>
+            <a id="ChillMode">Chill mode</a>
+         </div>
+      </div> 
+   </div>
    {{service}}
 
 <div class="accounts" style='display: none; border: 1px solid rgb(20,20,20,.3);'>
@@ -85,47 +122,6 @@
        </ul>
    </div> 
    <a href="{% url 'socialaccount_connections' %}">Connect Social Account</a> 
-</div>
-
-<div class="callendar__bottom__panel">
-   {% comment %} <div class="callender__top">
-      <button class="btn btn-primary" id="NatureSounds">
-         <span id="NatureSoundsText" >00 : 00</span>
-         <!-- <audio src="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}" id="NatureSoundsAudio" type="audio/mpeg" ></audio> -->
-      </button>
-
-      <div class="callendar__window">
-         <div class="callendar__window__timer">
-            <div class="window__timer">
-               <span class="window__timer__left">00</span>
-               :
-               <span class="window__timer__right">00</span>
-            </div>
-            <button class="btn" id="runTimer" ><i class="fa-solid fa-play"></i></button>
-            <button class="btn" id="restartTime" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
-         </div>
-         <div class="callendar__window__timer">
-            <input type="number" id="getMinutes" default="0" />
-            <input type="number" id="getSeconds" default="0" />
-         </div>
-         <div class="callendar__window__music">
-            <audio src="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}" id="NatureSoundsAudio" type="audio/mpeg" controls></audio>
-            <select name="" id="NatureSoundsSelect">
-               <option value="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}">Sound 1</option>
-               <option value="{% static '/media/sounds/Evening-Improvisation-with-Ethera.mp3' %}">Sound 2</option>
-               <option value="{% static '/media/sounds/jackmichaelking__gentle-ocean-waves-birdsong-and-gull.mp3' %}">Sound 3</option>
-               <option value="{% static '/media/sounds/Rain-Sound-and-Rainforest.mp3' %}">Sound 4</option>
-            </select>
-         </div>
-      </div>
-
-      <button class="btn btn-primary" id="FocusMode">Focus mode</button>
-      </div>
-      <div class="callender__top">
-         <button class="btn btn-primary" id="FullScreen">Full Screen</button>
-         <button class="btn btn-primary" id="ChillMode">Chill mode</button>
-      </div>
-   </div> {% endcomment %}
 </div>
 
 <script src="{% static 'js/calendar.js' %}" ></script>

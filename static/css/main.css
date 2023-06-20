@@ -23,13 +23,13 @@ body {
 
 .btn {
    padding: 10px 20px;
-   background-color: rgb(254,254,254,.3);
+   background-color: rgb(188, 143, 143, .3);
    font-size: 16px;
    border-radius: 10px;
    transition: all .3s linear;
 }
 .btn:hover {
-   background-color: rosybrown;
+   background-color: rgb(142, 191, 254, .3);
    cursor: pointer;
 }
 

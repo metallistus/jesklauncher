@@ -146,13 +146,13 @@ function createCalendar(elem, year, month) {
 
 callendar__header.append(left, h3, right)
 
-const callendar__place__input = document.querySelector('.callendar__place__input')
+// const callendar__place__input = document.querySelector('.callendar__place__input')
 
-callendar__place__input.addEventListener('change', (e) => {
-  // console.log(e.target.value)
+// callendar__place__input.addEventListener('change', (e) => {
+//   // console.log(e.target.value)
 
-  year = e.target.value
+//   year = e.target.value
 
-  monthRender(h3, month)
-  createCalendar(calendar, year, month+1);
-})
+//   monthRender(h3, month)
+//   createCalendar(calendar, year, month+1);
+// })

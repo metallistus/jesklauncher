@@ -10,7 +10,9 @@
 {% block content %}
 <div class="page">
       <div class="page__left">
-            {% comment %} <img src="https://images.pexels.com/photos/2724664/pexels-photo-2724664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="mount"> {% endcomment %}
+            <!-- <img src="https://images.pexels.com/photos/2724664/pexels-photo-2724664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="mount"> -->
+            <img src="" alt="mount" class="page__left__image">
+            <div class="page__left__mask"></div>
       </div>
       <div class="page__content">
             {% include 'base/blocks/Inbox.html' %}
@@ -19,4 +21,5 @@
       </div>
  </div> 
 <script src="{% static 'js/todos.js' %}" ></script>
+<script src="{% static 'js/backImage.js' %}" ></script>
 {% endblock content %}

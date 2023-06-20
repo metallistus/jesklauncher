@@ -10,7 +10,7 @@ const aElements = document.querySelectorAll('a')
 
 // panel
 const accountsElements = document.querySelectorAll('.accounts')
-
+const page__left__mask = document.querySelectorAll('.page__left__mask')
 
 console.log(borderRightElements)
 
@@ -31,6 +31,7 @@ document.getElementById('theme').addEventListener('click', () => {
       changeStyle('#202020',aElements, 'color')
 
       changeStyle('ghostwhite',accountsElements, 'backgroundColor')
+      changeStyle('rgb(248, 248, 255,.8)',page__left__mask, 'backgroundColor')
 
    } else {
       // ____________ black theme ___________
@@ -47,6 +48,7 @@ document.getElementById('theme').addEventListener('click', () => {
       changeStyle('ghostwhite',aElements, 'color')
 
       changeStyle('#202020',accountsElements, 'backgroundColor')
+      changeStyle('rgb(20, 20, 20,.8)',page__left__mask, 'backgroundColor');
    }
 })
 
