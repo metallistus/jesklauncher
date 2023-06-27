@@ -1,7 +1,7 @@
 const place = document.querySelector('.callendar__place__content')
 const place2 = document.querySelector('.callendar__place__content2')
 
-let upload_motivate_image = document.querySelector('#upload_motivate_image')
+// let upload_motivate_image = document.querySelector('#upload_motivate_image')
 
 const text__type = document.querySelector('#text__type')
 const image__type = document.querySelector('#image__type')
@@ -88,12 +88,14 @@ function stayContent(type) {
       }
       
       place.innerHTML = `
+         <input type="file" id="upload_motivate_image" >
          <img src="${getMotivateImage}" alt="" class='motivateImage' />
       `
       UploadMotivateImageShow()
 
       let motivateImage = document.querySelector('.motivateImage')
       imageScale(motivateImage)
+      let upload_motivate_image = document.querySelector('#upload_motivate_image')
 
       if (upload_motivate_image !== null) {
          upload_motivate_image.addEventListener('change', (e)  => {

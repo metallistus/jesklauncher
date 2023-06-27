@@ -232,9 +232,36 @@ SOCIALACCOUNT_PROVIDERS = {
             'client_id': os.environ.get('TELEGRAM_TOKEN'),
             'secret': '',
             'key': ''
-        }
-        # 'TOKEN': os.environ.get('TELEGRAM_TOKEN')
-    }
+        },
+        'TOKEN': os.environ.get('TELEGRAM_TOKEN')
+    }, 
+     'facebook': {
+         'APP': {
+            'client_id': os.environ.get('FACEBOOK_CLIENT_ID'),
+            'secret': os.environ.get('FACEBOOK_SECRET'),
+            'key': ''
+        },
+        'METHOD': 'oauth2',
+        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'first_name',
+            'last_name',
+            'middle_name',
+            'name',
+            'name_format',
+            'picture',
+            'short_name'
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v13.0',
+        'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
+    },
 }
 
 # TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_TOKEN')

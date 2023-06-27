@@ -1,33 +1,25 @@
 const FocusMode = document.querySelector('#FocusMode')
 
-const callender = document.querySelector('.calendar')
 const inbox = document.querySelector('.inbox')
 
-const today = document.querySelector('.today')
-
-const page__image__content  = document.querySelector('.page__image__content')
+const callender__top = document.querySelector('.callender__top')
+const callendar__sound = document.querySelector('.callendar__sound')
+const calendar__place = document.querySelector('.calendar__place')
 
 
 FocusMode.onclick = () => {
-   if (callender.style.opacity == '1') {
-      page__image__content.style.display = 'flex'
-      callender.style.display="none"
-      inbox.style.display="none"
-      today.style.width = '100%'
-      today.style.maxWidth = '800px'
-      
-      setTimeout(() => {
-         inbox.style.opacity = '0'
-         callender.style.opacity = '0'
-      }, 200)
-   } else {
-      today.style.width = 'auto'
-      page__image__content.style.display = 'grid'
-      
-      inbox.style.opacity = '1'
-      inbox.style.display = "flex"
+   console.log(inbox.style.opacity )
+   if (inbox.style.opacity == 0) {
+      inbox.style.opacity = 1
 
-      callender.style.opacity = '1'
-      callender.style.display="flex"
+      callender__top.style.opacity = 1
+      callendar__sound.style.opacity = 1
+      calendar__place.style.opacity = 1
+   } else {
+      inbox.style.opacity = 0
+
+      callender__top.style.opacity = 0
+      callendar__sound.style.opacity = 0
+      calendar__place.style.opacity = 0
    }
 }

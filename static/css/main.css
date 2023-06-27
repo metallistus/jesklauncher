@@ -81,9 +81,8 @@ body {
 
 /* chill mode */
 .chill__mode {
-   background-color: #fff;
    position: fixed;
-   z-index: 100000000000;
+   z-index: 100000000;
    width: 100vw;
    height: 100vh;
    top: 0;
@@ -97,13 +96,8 @@ body {
    flex-direction: column;
 
    opacity: 0;
-   transition: all .3s lienear;
-   
-   background: rgb(142,191,254);
-   background: linear-gradient(22deg, rgba(142,191,254,1) 0%, rgba(188,143,143,1) 100%); 
-
-   animation: gradient 1.5s linear;
-   animation-fill-mode: forwards;
+   transition: all .5s lienear;
+   background-color: transparent;
 }
 
 .chill__phone__intro {
@@ -112,32 +106,30 @@ body {
    align-items: center;
    flex-direction: column;
    font-family: 'Satisfy', cursive;
+   height: 100vh;
 }
 .chill__phone__intro h1 {
    font-size: calc(7vh + 7vw);
-   margin-bottom: none;
-   padding-bottom: none;
 }
 .chill__phone__date {
-   font-size: 40px;
    font-size: calc(1.5vh + 1.5vw);
    font-weight: 700;
 }
 .chill__phone__time {
-   font-size: 32px;
    font-size: calc(1.7vh + 1.7vw);
    font-weight: bold
-}
-.chill__phone__intro__title {
-   margin-bottom: -5%;
 }
 .chill__mode__exit {
    position: fixed;
    bottom: 5%;
    right: 5%;
    font-size: 42px;
-   color: rgb(254,254,254,.1);
+   /* color: rgb(254,254,254,.2); */
    transition: all .3s linear;
+   opacity: .9 !important;
+}
+.chill__mode__exit * {
+   opacity: .9 !important;
 }
 .chill__mode__exit:hover {
    animation-name: transform;

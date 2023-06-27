@@ -12,7 +12,7 @@ const images = [
 ]
 
 // write the first image
-placeForImage.src = images[0];
+placeForImage.src = images[localStorage.getItem('index') ?? 0];
 
 // sorting images
 changeBackImage.onclick = () => {
@@ -20,8 +20,11 @@ changeBackImage.onclick = () => {
     console.log(images.length, '>', elementIndex+1)
     console.log(images.length > elementIndex + 1)
 
-    if (images.length > elementIndex + 1) {
-        placeForImage.src = images[elementIndex + 1]
+    let i = elementIndex + 1
+    
+    if (images.length > i) {
+        placeForImage.src = images[i]
+        localStorage.setItem('index', i)
     } else {
         placeForImage.src = images[0]
     }

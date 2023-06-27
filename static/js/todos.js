@@ -12,12 +12,12 @@ for (let i = 0; i < notes_button.length; i++) {
    }
 
    notes_button[i].onclick = () => {
-      if  (show_notes[i].style.height == '10vh') {
+      if  (show_notes[i].style.height == '12vh') {
          show_notes[i].style.height = '76vh'
          localStorage.setItem(`show_notes_notifications${i}`, '76vh')
       } else {
-         show_notes[i].style.height = '10vh'
-         localStorage.setItem(`show_notes_notifications${i}`, '10vh')
+         show_notes[i].style.height = '12vh'
+         localStorage.setItem(`show_notes_notifications${i}`, '12vh')
       }
    } 
 }

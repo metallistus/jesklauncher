@@ -1,6 +1,6 @@
 {% load static socialaccount account %}
 
-<div class="column calendar" style='border-left: 1px solid rgb(20,20,20,.3);'>
+<div class="column calendar">
    
    {% comment %} night/light themen, show more accounts, sign-out {% endcomment %}
    <div 
@@ -28,7 +28,7 @@
      <div class="callendar__place__header" id="callendar__header"></div>
       <div class="calendar__place__body" id="calendar"></div>
    </div>
-   {% comment %} <div class="callendar__place">
+   <div class="callendar__place">
       <div class="inbox__tasks__apps calendar__place__bar">
          <div class="inbox__tasks__app">
             <input type="checkbox" value="text" id="text__type">
@@ -38,39 +38,37 @@
             <input type="checkbox" value="image" id="image__type">
             <span>+ image</span>
          </div>
-         <!-- <input type="file" id="upload_motivate_image" > -->
       </div>
-      <input type="file" id="upload_motivate_image" >
       <div class="callendar__place__content">
-         <input type="file" id="upload_motivate_image"  />
-         {% if type == 'text' %} 
-         <textarea name="" id="" class="callendar__place__content"></textarea>
-         {% elif type == 'image' %}
-         <img src="/static/media/{{user.profile.video}}" alt="">
-         {% endif %}
+         <!-- <input type="file" id="upload_motivate_image"  /> -->
+         <!-- <img src="/static/media/{{user.profile.video}}" alt=""> -->
       </div>
       <div class="callendar__place__content2">
          
       </div>
-   </div> {% endcomment %}
+   </div> 
    <div class="callender__panel">
      <div class="callender__panel__top">
          <a id="NatureSounds">
             00 : 00
          </a>
    
-        <div class="callendar__window" style="display:none; opacity: 0">
+        <div class="callendar__window" style="
+        display:none; 
+        opacity: 0; 
+        background-color: rgb(248, 248, 255);
+        ">
             <div class="callendar__window__timer">
                <div class="window__timer">
-                  <input type="number" id="getMinutes" value="0" />
-                  <input type="number" id="getSeconds" value="0" />
+                  <input type="number" id="getMinutes" value="0" style="color: #202020" />
+                  <input type="number" id="getSeconds" value="0" style="color: #202020" />
                </div>
-               <button class="btn" id="runTimer" ><i class="fa-solid fa-play"></i></button>
+               <button class="fa-solid fa-play btn" id="runTimer" ></button>
                <button class="btn" id="restartTime" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
             </div>
             <div class="callendar__window__music">
                <audio src="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}" id="NatureSoundsAudio" type="audio/mpeg" controls></audio>
-               <select name="" id="NatureSoundsSelect">
+               <select name="" id="NatureSoundsSelect" style="color: #202020">
                   <option value="{% static '/media/sounds/09-Meydan-Contemplate-the-stars.mp3' %}">Sound 1</option>
                   <option value="{% static '/media/sounds/Evening-Improvisation-with-Ethera.mp3' %}">Sound 2</option>
                   <option value="{% static '/media/sounds/jackmichaelking__gentle-ocean-waves-birdsong-and-gull.mp3' %}">Sound 3</option>
@@ -91,37 +89,37 @@
 
 <div class="accounts" style='display: none; border: 1px solid rgb(20,20,20,.3);'>
    <div class="accounts__header">
-      <h3>Add More Accounts</h3>
+      <h3>Added Accounts</h3>
       <button class="btn close__accounts"><i class="fa-solid fa-xmark"></i></button>
    </div>
    <div class="accounts__body">
-      {% if user.socialaccount_set.all %}
-         {% for account in user.socialaccount_set.all %}
-            {% if account.provider == 'google' %}
-               <i class="fa-brands fa-google icon" ></i>
-            {% elif account.provider == 'github' %}
-            <i class="fa-brands fa-github icon"></i>
-            {% elif account.provider == 'trello' %}
-            <i class="fa-brands fa-trello"></i>
-            {% elif account.provider == 'instagram' %}
-            <i class="fa-brands fa-instagram"></i>
-            {% elif account.provider == 'facebook' %}
-            <i class="fa-brands fa-square-facebook"></i>
-            {% endif %}
-         {% endfor %}
+   {% if user.socialaccount_set.all %}
+      {% for account in user.socialaccount_set.all %}
+        {% if account.provider == 'google' %}
+            <i class="fa-brands fa-google icon" ></i>
+         {% elif account.provider == 'github' %}
+         <i class="fa-brands fa-github icon"></i>
+         {% elif account.provider == 'trello' %}
+         <i class="fa-brands fa-trello"></i>
+         {% elif account.provider == 'facebook' %}
+         <i class="fa-brands fa-square-facebook"></i>
+         {% endif %} 
+      {% endfor %}
    {% else %}
       <p>No connected accounts.</p>
    {% endif %}
       <p>{{access_token}}</p>
-
-      {% comment %} {% providers_media_js %} {% endcomment %}
-     <ul>
-         {% for provider in providers %}
-           
-         {% endfor %}
-       </ul>
    </div> 
-   <a href="{% url 'socialaccount_connections' %}">Connect Social Account</a> 
+   <div class="accounts__header">
+      <h3>Add Other Accounts</h3>
+      <span></span>
+   </div>
+   <div class="accounts__body">
+      <a class="login" href="{% provider_login_url 'google' %}"><i class="fa-brands fa-google"></i>  </a>
+      <a class="login" href="{% provider_login_url 'telegram' %}"><i class="fa-brands fa-telegram"></i></i> </a>
+      <a class="login" href="{% provider_login_url 'facebook' method='oauth2' %}"><i class="fa-brands fa-facebook"></i></a>            
+   </div>
+   <a href="{% url 'socialaccount_connections' %}">Connect Social Account</a>
 </div>
 
 <script src="{% static 'js/calendar.js' %}" ></script>
@@ -132,3 +130,4 @@
 <script src="{% static 'js/fullscreen.js' %}" ></script>
 
 <script src="{% static 'js/showForm.js' %}" ></script>
+<script src="{% static 'js/chill_mode.js' %}" ></script>

@@ -1,5 +1,9 @@
 {% load static %}
-<div class="column today">
+<div class="column today"  style="
+   border-right: 1px solid rgb(20,20,20,.3);
+   border-left: 1px solid rgb(20,20,20,.3);
+   opacity: 1;
+">
    <h3 
       class="column__title"
       style = "border-bottom: 1px solid rgb(20,20,20,.3)"
@@ -35,18 +39,15 @@
             <button class="btn" hidden>send</button>
       </div>
    </div>
-   <div class="inbox__show__tasks" style='height: 10vh'>
+   <div class="inbox__show__tasks" style='height: 12vh'>
       {% for todo in today_notes %}
       <div class='note'>
          {{todo.message}}
          <a 
-            class='note__delete' 
-            href="{%  url 'base:delete_today_note' today_note.id  %}"
-         >
-         <span class="material-symbols-outlined">
-            close
-            </span>
-         </a>
+            class='material-symbols-outlined note__delete' 
+            href="{%  url 'base:delete_today_note' todo.id  %}"
+            style="border: 1px solid rgb(20,20,20,.3)"
+         >close</a>
       </div>
       {% endfor %}
    </div>

@@ -124,7 +124,7 @@
    height: 16px;
 }
 .notification__header span {
-   font-size: 14px;
+   font-size: 12px;
    font-weight: bold;
 }
 .notification__body {
@@ -142,7 +142,7 @@
 
    border-radius: 10px 10px 10px 0px ;
    padding: 4px 8px;
-   font-size: 16px;
+   font-size: 14px;
    max-width: 80%;
    width: 100%;
    background-color: rgb(188, 143, 143, .1)
@@ -157,17 +157,19 @@
    display: flex;
    justify-content: start;
    flex-wrap: wrap;
+   max-width: 50px;
+   width: 100%;
 }
 .notification__links > a {
-   font-size: 14px; 
+   font-size: 10px; 
    border-radius: 10px;
    padding: 2px 4px;
-   margin: 2px ;
+   margin: 2px;
    transition: all .3s linear;
-   color: rgb(20,20,20,.6);
 }
 .notification__links > a:hover {
-   background-color: rgb(142,191,254);
+   background-color: rgb(142,191,254, .4);
+   box-shadow: 0 0 5px 1px rgb(142,191,254, .5);
 }
 .notification__text {
    display: none;
@@ -260,7 +262,7 @@
    width: 100%;
 }
 .inbox__add__tasks__form input {
-   background-color: rgb(188, 143, 143, .1);
+   background-color: rgb(188, 143, 143, .3);
    font-size: 16px;
    width: 100%;
    padding: 8px 6px ;
@@ -268,14 +270,14 @@
    transition: all .3s linear;
 }
 .inbox__add__tasks__form input:focus {
-   background-color: rgb(188, 143, 143, .3);
+   background-color: rgb(188, 143, 143, .5);
 }
 .inbox__add__tasks__notification__number {
    font-size: 16px;
    border-radius: 10px;
    padding: 0px 6px;
    margin-right: 4px;
-   background-color: rgba(188,143,143,.2);
+   background-color: rgba(188,143,143,.4);
 }
 .inbox__tasks__menu__button {
    margin: 0 6px;   
@@ -296,30 +298,28 @@
    background-color: rgba(188,143,143,.2);
    border-radius: 10px;
    margin: 6px 0;
-   font-size: 16px;
+   font-size: 14px;
    display: flex;
    justify-content: space-between;
    align-items: start;
    width: 100%;
+   gap: 6px;
 }
 .note__delete {
    border-radius: 100%;
+   font-size: 14px;
+   font-weight: 400;
 
    border: 1px solid rgb(20,20,20,.4);
-   padding: 0 6px;
    transition:  all .3s linear;
-}
-.note__delete span {
-   font-size: 12px;
-   font-weight: 400;
+   color: rgb(20,20,20,.4);
+
+   padding: 2px;
    transition:  all .3s linear;
-   color: rgb(20,20,20,.5);
 }
 .note__delete:hover {
-   border-color: rgb(20,20,20,.8);
-}
-.note__delete:hover span {
    color: rgb(20,20,20,.8);
+   border-color: rgb(20,20,20,.8);
 }
 
 /* ? Today */
@@ -344,6 +344,7 @@
    width: 100%;
    padding: 0 4px;
    gap:5px;
+   transition: all .3s linear;
 }
 .callender__top span {
    font-size: 14px;
@@ -370,6 +371,9 @@
 .callender__top a:hover {
    background-color: rgb(142, 191, 254, .3);
 }
+.callendar__sound {
+   transition: all .3s linear;
+}
 .today__work__notfound {
    display: flex;
    justify-content: center;
@@ -388,6 +392,7 @@
 .calendar__place {
    width: 100%;
    padding: 4px 0;
+   transition: all .3s linear;
 }
 .callendar__place__header {
    width: 100%;
@@ -462,7 +467,6 @@ td:hover {
 }
 .accounts__header button {
    font-size: 18px;
-   border: 1px solid rgb(20,20,20,.3);
 }
 .accounts__header button:hover {
    border-color: rosybrown;
@@ -474,6 +478,7 @@ td:hover {
    width: 100%;
    flex-wrap: wrap;
    margin: 10px 0;
+   gap: 10px;
 }
 .accounts__body i {
    font-size: 32px;
@@ -583,4 +588,40 @@ td:hover {
 .callendar__window {
    display: none;
    opacity: 0;
+}
+#upload_motivate_image {
+   width: 100%;
+
+}
+
+textarea {
+   width: 100%;
+   background-color: transparent;
+   padding: 6px;
+   font-size: 16px;
+   min-width: 100%;
+   max-width: 100%;
+   min-height: 80px;
+   max-height: 120px;
+   height: 100%;
+   transition: all .3s linear;
+   border-radius: 10px;
+}
+textarea:focus {
+   background-color: rgb(188, 143, 143, .1);
+}
+.callendar__place__content {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   width: 100%;
+   padding: 4px;
+}
+.motivateImage {
+   max-width: 100%;
+   height: 200px;
+   object-fit: cover;
+   border-radius: 4px;
+   margin-top: 4px;
 }
