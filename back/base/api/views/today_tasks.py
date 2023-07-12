@@ -12,7 +12,10 @@ def today_notes_list_create(request):
                 'message': todo.message, 
                 'created_at': todo.created_at
                 } for todo in todays_notes]
-        return JsonResponse(data, safe=False)
+        return JsonResponse({
+            'size': len(data),
+            'notes' : data    
+        }, safe=False)
     elif request.method == 'POST':
         user = request.user
         message = request.POST.get('message')

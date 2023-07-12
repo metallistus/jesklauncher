@@ -10,6 +10,11 @@ for (let i=0; i<messages.length; i++) {
 
 // Close Message When U Click on Escape or Delete
 addEventListener('keydown', (e) => {
+   console.log(e)
+   let note__form = document.querySelector('.note__form')
+   
+   closeNoteForm(note__form)
+
    for (let i=0; i<messages.length; i++) {
       if (e.key === 'Delete' || e.key === 'Escape') {
          messages[i].style.display = 'none';

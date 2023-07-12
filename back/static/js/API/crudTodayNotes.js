@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     let create_form = document.querySelector('#create-today-note-form')
     let todo_list = document.querySelector('#today-notes-list')
+    let inbox__add__today__notes__notification__number = document.querySelector('.inbox__add__today__notes__notification__number')
 
 
     const showTodos = () => {
@@ -9,13 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 todo_list.innerHTML = ''
 
-                data.forEach(todo => {
+                inbox__add__today__notes__notification__number.innerHTML = data.size
+                data.notes.forEach(todo => {
                     const div = document.createElement('div')
                     div.classList.add('note')
                     div.innerHTML = `
                         ${todo.message}
                         <a
-                            class="material-symbols-outlined" 
+                            class="material-symbols-outlined note__delete" 
                             style="border: 1px solid rgb(20,20,20,.3)"
                             id = "${todo.id}"
                         >close</a>
@@ -51,16 +53,37 @@ document.addEventListener('DOMContentLoaded', () => {
     todo_list.addEventListener('click', (e) => {
         if (e.target.classList.contains('material-symbols-outlined')) {
             let todoItem = e.target.id;
-            
-            fetch(`/api/today-notes/${parseInt(todoItem)}`, {
-                method: 'DELETE'
+            let note__form = document.querySelector('.note__form')
+
+            note__form.style.display = 'flex'
+            note__form.innerHTML = `
+                <h2>Do you want to delete this note?</h2>
+                <div>
+                    <span class = 'btn note__form__close'>No, close</span>
+                    <span class = 'btn note__form__confirm' >Yes</span>
+                </div>
+            `
+            setTimeout(() => {
+                note__form.style.opacity = 1
+            }, 100)
+
+            document.querySelector('.note__form__close').addEventListener('click', () => {
+                closeNoteForm(note__form)
             })
-                .then(response => {
-                    showTodos()
+
+            document.querySelector('.note__form__confirm').addEventListener('click', () => {
+                closeNoteForm(note__form)
+
+                fetch(`/api/today-notes/${parseInt(todoItem)}`, {
+                    method: 'DELETE'
                 })
-                .catch(err => {
-                    console.error('Error: ', err)
-                })
+                    .then(response => {
+                        showTodos()
+                    })
+                    .catch(err => {
+                        console.error('Error: ', err)
+                    })
+            })
         }
     })
 

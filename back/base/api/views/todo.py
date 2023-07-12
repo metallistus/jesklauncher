@@ -12,7 +12,11 @@ def todo_list_create(request):
                 'message': todo.message, 
                 'created_at': todo.created_at
                 } for todo in todos]
-        return JsonResponse(data, safe=False)
+        return JsonResponse({
+            'size': todos.count(),
+            'todos': data   
+        }, safe=False)
+        
     elif request.method == 'POST':
         user = request.user
         message = request.POST.get('message')
@@ -35,7 +39,6 @@ def todo_delete(request, pk):
         
         if request.method == 'DELETE':
             todo.delete()
-            print('_______________', todo)
             return JsonResponse({
                 'message': 'Todo deleted successfully'
             }, status=204)

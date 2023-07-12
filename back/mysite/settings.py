@@ -25,10 +25,9 @@ DEBUG = True
 
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 ALLOWED_HOSTS = ['*']
-
+# pip install django djangorestframework django-cors-headers django-allauth django_extension djangorestframework-simplejwt dj_database_url google-auth google-api-python-client python-telegram-bot
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'base',
     
     'django.contrib.sites',
+    'django_extensions',
      
     'allauth',
     'allauth.account',
@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     
     "corsheaders",
 ]
+
+#  python3 manage.py runserver_plus --cert-file /tmp/cert
 
 SITE_ID = 2
 SOCIALACCOUNT_LOGIN_ON_GET=True
@@ -239,7 +241,7 @@ SOCIALACCOUNT_PROVIDERS = {
          'APP': {
             'client_id': os.environ.get('FACEBOOK_CLIENT_ID'),
             'secret': os.environ.get('FACEBOOK_SECRET'),
-            'key': ''
+            'key': os.environ.get('FACEBOOK_KEY'),
         },
         'METHOD': 'oauth2',
         'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',

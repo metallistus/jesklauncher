@@ -21,27 +21,6 @@ import base64
 
 @login_required(login_url='base:sign-in')
 def index_view(request):
-   # email_list = []
-   # socialApp = SocialApp.objects.get(provider='google')
-   
-   # socialGoogleToken = SocialToken.objects.filter(account__user=request.user, account__provider='google').last()
-   # if socialGoogleToken:
-   #     access_token = socialGoogleToken.token
-      
-   #     # CALLENDAR GOOGLE
-   #     google_calendar.CallendarService(email_list, access_token)
-         
-   #     # GOOGLE TASKS
-   #     response_tasks = requests.get('https://www.googleapis.com/tasks/v1/users/@me/lists', params={
-   #        'access_token': access_token,
-   #        'maxResults': 10
-   #     })      
-   #     google_todos.GoogleTodoService(email_list, access_token, response_tasks)
-
-   #     # GOOGLE GMAIL
-   #     google_gmail.GoogleGmailService(email_list, access_token, get_email_text, get_header_value)
-   
-   
    # bot_token = '6263736045:AAHXJM8S4NLQKEiH7O1f88pKOa6x9Y0pqLc'
    # bot = Bot(token=bot_token)
    # print('___________bot_______________', bot)

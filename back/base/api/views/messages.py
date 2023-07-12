@@ -11,19 +11,15 @@ def messages_list(request):
     # socialApp = SocialApp.objects.get(provider='google')
     
     socialGoogleToken = SocialToken.objects.filter(account__user=request.user, account__provider='google').last()
-    print(f'______________{socialGoogleToken}_____________')
+    # print(f'______________{socialGoogleToken}_____________')
     if socialGoogleToken:
         access_token = socialGoogleToken.token
         
         # CALLENDAR GOOGLE
         # google_calendar.CallendarService(email_list, access_token)
             
-        # GOOGLE TASKS
-        # response_tasks = requests.get('https://www.googleapis.com/tasks/v1/users/@me/lists', params={
-        #     'access_token': access_token,
-        #     'maxResults': 10
-        # })      
-        # google_todos.GoogleTodoService(email_list, access_token, response_tasks)
+        #GOOGLE TASKS
+        google_todos.GoogleTodoService(email_list, access_token)
 
         # GOOGLE GMAIL
         google_gmail.GoogleGmailService(email_list, access_token, get_email_text, get_header_value)

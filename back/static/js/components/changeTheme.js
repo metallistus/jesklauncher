@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
    const inputElements = document.querySelectorAll('input')
    const aElements = document.querySelectorAll('a')
    const options = document.querySelectorAll('option')
+   const note__formElements = document.querySelectorAll('.note__form')
 
    // panel
    const accountsElements = document.querySelectorAll('.accounts')
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
          changeStyle('rgb(248, 248, 255,.6)',page__left__mask, 'backgroundColor')
          changeStyle('rgb(248, 248, 255, 1)', message ,'backgroundColor')
-
+         changeStyle('rgb(248, 248, 255)', note__formElements, 'backgroundColor')
       } else {
          // TODO:  ____________ dark theme ___________
 
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
          
          changeStyle('rgb(20, 20, 20,.6)',page__left__mask, 'backgroundColor')
          changeStyle('#202020',message ,'backgroundColor')
+         changeStyle('#202020', note__formElements, 'backgroundColor')
       }
    }
 
