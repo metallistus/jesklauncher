@@ -117,7 +117,7 @@
    display: flex;
    justify-content: start;
    align-items: center;
-   gap: 10px;
+   gap: 6px;
 }
 .notification__header img {
    width: 16px;
@@ -185,7 +185,7 @@
 /* ? where do i need to send your message */
 .inbox__tasks__apps {
    width: 100%;
-   gap:10px;
+   gap:4px;
    padding: 8px 6px;
 
    display: flex;
@@ -194,7 +194,6 @@
 }
 .inbox__tasks__app {
    font-size: 16px;
-   padding: 4px 6px ;
    position: relative;
    border-radius: 10px;
    max-width: 80px;
@@ -217,7 +216,8 @@
    height: 24px;
 }
 .inbox__tasks__app:hover {
-   background-color: rgb(142,191,254, .5);
+   /* background-color: rgb(142,191,254, .5); */
+   background-color: rgb(188, 143, 143, .2);
    color: rgb(248, 248, 255);
    cursor: pointer;
 }
@@ -231,7 +231,8 @@
    width: 100%;
    height: 24px;
    transition: all .3s linear;
-   gap: 5px;
+   gap: 4px;
+   padding: 2px 6px ;
 }
 .inbox__tasks__app span img {
    width: 18px;
@@ -241,10 +242,11 @@
    font-size: 20px;
 }
 .inbox__tasks__app input:hover + span {
-   color: rgb(248, 248, 255);
+   background-color: rgb(188, 143, 143, .2);
 }
 .inbox__tasks__app input:checked + span {
-   background-color: rgb(142,191,254, .8);
+   /* background-color: rgb(142,191,254, .8); */
+   background-color: rgb(188, 143, 143, .7);
 }
 
 /* ? add tasks */
@@ -575,8 +577,8 @@ td:hover {
    background-color: rgb(188, 143, 143, .3);
 }
 .callender__panel__top a {
-   /* background-color: rgb(188, 143, 143, .3); */
-   background-color: #a4969a;
+   background-color: rgb(188, 143, 143, .3);
+   /* background-color: #a4969a; */
    cursor: pointer;
    width: 100%;
    transition: all .3s linear;
@@ -589,7 +591,27 @@ td:hover {
    justify-content: center;
    align-items: center;
    flex-direction: column;
+   position: relative;
 }
+/* .callender__panel__top a::before {
+   content: attr(title);
+   position: absolute;
+   background-color: rosybrown;
+  color: #202020;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 14px;
+  top: -50%;
+  right: 0%;
+  z-index: 1;
+  border: 2px solid #202020;
+  opacity: 0;
+  transition: all .3s linear;
+}
+.callender__panel__top a:hover:before {
+   opacity: 1;
+} */
+
 .callender__panel__top a:hover {
    /* background-color: rgb(142, 191, 254, .3); */
    background-color: #95a5bb;
@@ -694,6 +716,23 @@ textarea:focus {
 .account__body__line input:hover, .account__body__line input:focus {
    border-color: #202020;
 }
+.account__body__docs {
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   width: 100%;
+   margin-top: 10px;
+   gap: 20px;
+}
+.account__body__docs a {
+   opacity: .7;
+   font-size: 16px;
+   transition: all .3s linear;
+}
+.account__body__docs a:hover {
+   border-bottom: 1px solid rgb(32,32,32,.7);
+}
+
 /* callendar panel for focus mode  */
 .callender__panel__focusmode {
    position: fixed;

@@ -18,18 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 div.classList.add('notification');
                 div.id = `${message.id}_notification`;
 
-                let icon_path = ''
+                let icon_path = type = ''
 
-                if (message.type === 'Gmail') {
+                if (message.type == 'Gmail') {
                     icon_path = '/static/media/icons/gmail.svg'
-                } else if (message.type === 'google_todo') {
+                    type = 'Gmail'
+                } else if (message.type == 'google_todo') {
                   icon_path = '/static/media/icons/google_todo.png'
+                  type = 'Google Todo'
+                } else if (message.type == 'google_calendar') {
+                  type = 'Google Calendar'
+                  icon_path = '/static/media/icons/g-calendar.svg'
                 }
 
                 div.innerHTML = `
                   <div class="notification__header">
                     <img src="${icon_path}" alt="">
-                    <span>${message.type}</span>
+                    <span>${type}</span>
+                   ${message.sender? '-  <span>' + message.sender + '</span>': '' }
                   </div>
                   <div class="notification__body">
                     <div class="notification__message">
@@ -53,10 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
           }
     }
 
+    // Open 
     messages_list.addEventListener('click', (e) => {
         if (e.target.classList.contains('notification__title')) {
             let id = e.target.id
             let notification_message = e.target.parentNode
+            
             let notification__text = notification_message.querySelector('.notification__text')
             let notification__sender = notification_message.querySelector('.notification__sender')
             let notification__message__time = notification_message.querySelector('.notification__message__time')
@@ -65,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2>${e.target.textContent}</h2>
                 <p>${notification__text.innerHTML}</p>
                 <p>
-                    <b>${notification__sender.innerHTML}</b> - 
+                    <b>${notification__sender.innerHTML != '' ? notification__sender.innerHTML + ' - ' : ''}</b> 
                     <b>${notification__message__time.innerHTML}</b>
                 </p>
             `

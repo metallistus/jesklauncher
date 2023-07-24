@@ -3,20 +3,53 @@ document.addEventListener('DOMContentLoaded', () => {
     let todo_list = document.querySelector('#todo-list')
     let todos_notification__number = document.querySelector('.inbox__add__tasks__notification__number')
 
-    let add_note_inbox = document.querySelector('add_note_inbox')
+    let jesk_todo = document.querySelector('.jesk_todo')
+    let google_todo = document.querySelector('.google_todo')
 
-    const showTodos = () => {
-        fetch('/api/todos')
+    let add_note_inbox = document.querySelector('.add_note_inbox')
+
+    // TODO: SHOW ALL TODO 
+    const showTodos = async () => {
+        todo_list.innerHTML = ''
+        todos_notification__number.innerHTML = 0
+
+       if (jesk_todo.checked) {
+            await fetch('/api/todos')
+                .then(response => response.json())
+                .then(data => {
+                    todos_notification__number.innerHTML = data.size
+
+                    data.todos.forEach(todo => {
+                        const div = document.createElement('div')
+                        div.classList.add('note')
+                        div.innerHTML = `
+                            ${todo.message}
+                            <a 
+                                class="material-symbols-outlined note__delete" 
+                                style="border: 1px solid rgb(20,20,20,.3)"
+                                id = "${todo.id}"
+                            >
+                                close
+                            </a>
+                        `
+                        todo_list.appendChild(div)
+                    })
+                })
+                .catch(err=> {
+                    console.error('Error: ', err)
+                })
+        }
+
+        if (google_todo.checked) {
+            await fetch('/api/social-todos')
             .then(response => response.json())
             .then(data => {
-                todo_list.innerHTML = ''
-
-                todos_notification__number.innerHTML = data.size
-                data.todos.forEach(todo => {
+                todos_notification__number.innerHTML = data.messages.length + parseInt(todos_notification__number.innerHTML)
+                data.messages.forEach(todo => {
                     const div = document.createElement('div')
                     div.classList.add('note')
                     div.innerHTML = `
-                        ${todo.message}
+                        ${todo.title}
                         <a 
                             class="material-symbols-outlined note__delete" 
                             style="border: 1px solid rgb(20,20,20,.3)"
@@ -27,13 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     `
                     todo_list.appendChild(div)
                 })
-
             })
             .catch(err=> {
                 console.error('Error: ', err)
             })
+        }
     }
 
+    //  ADD A NEW TODO
     create_form.addEventListener('submit', (e) => {
         e.preventDefault()
 
@@ -53,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     })
 
+    // DELETE TODO
     todo_list.addEventListener('click', (e) => {
         if (e.target.classList.contains('material-symbols-outlined')) {
             let todoItem = e.target.id;
@@ -91,6 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }
     })
+
+    document.querySelectorAll('.inbox__tasks__show').forEach(s => s.addEventListener('click', showTodos))
 
     showTodos()
 })

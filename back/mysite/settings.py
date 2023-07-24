@@ -25,7 +25,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 ALLOWED_HOSTS = ['*']
-# pip install django djangorestframework django-cors-headers django-allauth django_extension djangorestframework-simplejwt dj_database_url google-auth google-api-python-client python-telegram-bot
+# pip install django djangorestframework django-cors-headers django-allauth django_extension djangorestframework-simplejwt dj_database_url google-auth google-api-python-client python-telegram-bot python-dateutilil
 
 # Application definition
 INSTALLED_APPS = [
@@ -197,7 +197,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'https://www.googleapis.com/auth/calendar.readonly',
         ],
         'AUTH_PARAMS': {
-            'access_type': 'offline',
+            # 'access_type': 'offline',
+            'access_type': '',
             # 'prompt': 'consent',
         },
         'APP': {
@@ -222,11 +223,11 @@ SOCIALACCOUNT_PROVIDERS = {
             'user',
             'repo',
             'read:org',
-            'notifications'
+            # 'notifications'
         ],
          'APP': {
-            'client_id': os.environ.get('GITHUB_CLIENT_ID'),
-            'secret': os.environ.get('GITHUB_CLIENT_SECRET'), 
+            'client_id': 'd50e3fc5cb5e121b5b7d',
+            'secret': '322f16d94ebbdf04c440bc64df28c0ed216f28f0'
         },
     },
     'telegram': {
@@ -244,7 +245,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': os.environ.get('FACEBOOK_KEY'),
         },
         'METHOD': 'oauth2',
-        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        # 'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
         'SCOPE': ['email', 'public_profile'],
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
         'INIT_PARAMS': {'cookie': True},
@@ -259,7 +260,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'short_name'
         ],
         'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': 'path.to.callable',
+        # 'LOCALE_FUNC': 'path.to.callable',
         'VERIFIED_EMAIL': False,
         'VERSION': 'v13.0',
         'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',

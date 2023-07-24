@@ -15,6 +15,7 @@ def get_email_text(payload):
                     return base64.urlsafe_b64decode(data).decode('utf-8')
     return None
 
+# refresh token generation
 def refresh_token(token, refresh_token):
     provider = token.account.provider
     provider_instance = registry.by_id(provider)

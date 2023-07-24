@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from allauth.socialaccount.models import SocialToken, SocialApp
-import requests
 
 from ...utils import  get_email_text, get_header_value
 from ...services.google import google_calendar, google_todos , google_gmail
@@ -11,14 +10,13 @@ def messages_list(request):
     # socialApp = SocialApp.objects.get(provider='google')
     
     socialGoogleToken = SocialToken.objects.filter(account__user=request.user, account__provider='google').last()
-    # print(f'______________{socialGoogleToken}_____________')
     if socialGoogleToken:
         access_token = socialGoogleToken.token
         
         # CALLENDAR GOOGLE
-        # google_calendar.CallendarService(email_list, access_token)
+        google_calendar.CallendarService(email_list, access_token)
             
-        #GOOGLE TASKS
+        #GOOGLE TODO
         google_todos.GoogleTodoService(email_list, access_token)
 
         # GOOGLE GMAIL
@@ -32,12 +30,14 @@ def messages_list(request):
                     'sender': message['sender'],
                     'link': message['link'],
                     'text': message['text'],
-                    'created_time': message['created_time'],
+                    'created_time': str(message['created_time']),
                 } for message in email_list]
-                            
+            
+            data = sorted(data, key=lambda x: x['created_time'])
+            
             return JsonResponse({
                 'status':'success',
-                'messages': data,
+                'messages': data[::-1],
             }, safe=False)
             
         return JsonResponse({
