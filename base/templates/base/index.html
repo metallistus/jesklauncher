@@ -10,9 +10,8 @@
 {% block content %}
 <div class="page">
       <div class="page__left">
-            <!-- <img src="https://images.pexels.com/photos/2724664/pexels-photo-2724664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="mount"> -->
             <img src="" alt="mount" class="page__left__image">
-            <div class="page__left__mask"></div>
+            <div class="page__left__mask" style='background-color: rgb(254,254,254,.8)'></div>
       </div>
       <div class="page__content">
             {% include 'base/blocks/Inbox.html' %}
@@ -20,6 +19,12 @@
             {% include 'base/blocks/Calendar.html' %}
       </div>
  </div> 
-<script src="{% static 'js/todos.js' %}" ></script>
-<script src="{% static 'js/backImage.js' %}" ></script>
+ 
+<script src="{% static 'js/API/crudTODO.js' %}" ></script>
+<script src="{% static 'js/API/getMessages.js' %}" ></script>
+<script src="{% static 'js/API/utils.js' %}" ></script>
+<script src="{% static 'js/API/settings.js' %}" ></script>
+
+<script src="{% static 'js/components/todos.js' %}" ></script>
+<script src="{% static 'js/components/backImage.js' %}" ></script>
 {% endblock content %}

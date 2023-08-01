@@ -30,7 +30,7 @@
 .page__left__mask {
    display: block;
    content: "";
-   background-color: rgb(248, 248, 255, .8);
+   background-color: rgb(248, 248, 255, 1);
    width: 100vw;
    height: 100vh;
    position: absolute;
@@ -172,6 +172,9 @@
    box-shadow: 0 0 5px 1px rgb(142,191,254, .5);
 }
 .notification__text {
+   display: none;
+}
+.notification__sender {
    display: none;
 }
 
@@ -316,6 +319,7 @@
 
    padding: 2px;
    transition:  all .3s linear;
+   cursor: pointer;
 }
 .note__delete:hover {
    color: rgb(20,20,20,.8);
@@ -327,8 +331,7 @@
    width: 100%;
    height: 76vh;
    
-   overflow: hidden;
-   overflow-y: scroll;
+   overflow:scroll;
 
    padding: 10px;
    transition: all .3s linear;
@@ -383,9 +386,12 @@
    position: absolute;
    opacity: .3;
    left: 0;
+   overflow: auto !important;
    font-size: 24px;
    transition: all .3s linear;
    z-index: 1;
+   overflow-x: scroll;
+   overflow-y: scroll;
 }
 
 /* ? calendar */
@@ -441,23 +447,23 @@ td:hover {
    background-color: rgb(188, 143, 143, .3);
 }
 
-.accounts {
+.accounts, .settings {
    display: flex;
    justify-content: center;
    align-items: center;
    flex-direction: column;
    
-   width: 100%;
+   width: 54vw;
    background-color: rgb(248, 248, 255);
    position: fixed;
    padding: 4vh 4vw;
 
-   max-width: 600px;
-   left: 20%;
-   right: 20%;
+   left: 23vw;
+   right: 23vw;
    z-index: 10;
    top: 20%;
    border-radius: 10px;
+   box-shadow: 0 0px 10px 100vh rgb(0,0,0,.8);
 }
 .accounts__header {
    width: 100%;
@@ -475,6 +481,7 @@ td:hover {
    display: flex;
    justify-content: center;
    align-items: center;
+   flex-direction: column;
    width: 100%;
    flex-wrap: wrap;
    margin: 10px 0;
@@ -554,7 +561,7 @@ td:hover {
    background-color: rgb(188, 143, 143, .1);
 }
 .callendar__window__timer input {
-   max-width: 40px;
+   max-width: 60px;
    width: 100%;
    height: 100%;
    padding: 10px 4px;
@@ -568,7 +575,8 @@ td:hover {
    background-color: rgb(188, 143, 143, .3);
 }
 .callender__panel__top a {
-   background-color: rgb(188, 143, 143, .3);
+   /* background-color: rgb(188, 143, 143, .3); */
+   background-color: #a4969a;
    cursor: pointer;
    width: 100%;
    transition: all .3s linear;
@@ -581,9 +589,30 @@ td:hover {
    justify-content: center;
    align-items: center;
    flex-direction: column;
+   position: relative;
 }
+/* .callender__panel__top a::before {
+   content: attr(title);
+   position: absolute;
+   background-color: rosybrown;
+  color: #202020;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 14px;
+  top: -50%;
+  right: 0%;
+  z-index: 1;
+  border: 2px solid #202020;
+  opacity: 0;
+  transition: all .3s linear;
+}
+.callender__panel__top a:hover:before {
+   opacity: 1;
+} */
+
 .callender__panel__top a:hover {
-   background-color: rgb(142, 191, 254, .3);
+   /* background-color: rgb(142, 191, 254, .3); */
+   background-color: #95a5bb;
 }
 .callendar__window {
    display: none;
@@ -624,4 +653,97 @@ textarea:focus {
    object-fit: cover;
    border-radius: 4px;
    margin-top: 4px;
+}
+
+/* form when you try to delete message */
+.note__form {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+   position: fixed;
+
+   width: 40vw;
+   border-radius: 10px;
+
+   background-color: rgb(248, 248, 255);
+
+   bottom: 30vh;
+   right: 30vw;
+   left: 30vw;
+
+   padding: 8vh 6vw;
+   box-shadow: 0 0px 10px 100vh rgb(0,0,0,.8);
+   z-index: 10;
+
+   transition: all .3s linear;
+
+   display: none;
+   opacity: 0;
+}
+.note__form h2 {
+   margin-bottom: 14px;
+}
+.note__form div {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}
+.account__body__line {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   gap: 10px;
+}
+.account__body__line input {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 2%;
+   border: 1px solid rgb(20,20,20,.2);
+   border-radius: 6px;
+   margin-top: 4px;
+   width: 100%;
+   font-size: 16px;
+
+   transition: all .3s linear;
+   max-width: 400px;
+}
+.account__body__line input:hover, .account__body__line input:focus {
+   border-color: #202020;
+}
+.account__body__docs {
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   width: 100%;
+   margin-top: 10px;
+   gap: 20px;
+}
+.account__body__docs a {
+   opacity: .7;
+   font-size: 16px;
+   transition: all .3s linear;
+}
+.account__body__docs a:hover {
+   border-bottom: 1px solid rgb(32,32,32,.7);
+}
+
+/* callendar panel for focus mode  */
+.callender__panel__focusmode {
+   position: fixed;
+   max-width: 40%;
+   top: -4px;
+   right: 0;
+   height: 40px;
+   z-index: 10;
+
+   padding: 0 6px;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 0 0 0 10px;
 }

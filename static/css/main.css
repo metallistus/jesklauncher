@@ -32,6 +32,12 @@ body {
    background-color: rgb(142, 191, 254, .3);
    cursor: pointer;
 }
+.btn--del {
+   background-color: rgb(142, 191, 254, .3);
+}
+.btn--del:hover {
+   background-color: rgb(188, 143, 143, .3);
+}
 
 @media screen and (max-width: 600px) {
    .btn {
@@ -43,7 +49,8 @@ body {
    background-color: #bc8f8f;
 }
 
-/* messages */
+
+/* TODO:  messages */
 .messages {
    display: flex;
    justify-content: center;
@@ -54,7 +61,7 @@ body {
    width: 100%;
    position: fixed;
    z-index: 5;
-   top: 20vh;
+   top: 28vh;
    width: 100%;
    max-width: 500px;
    background-color: white;
@@ -65,24 +72,27 @@ body {
    display: flex;
    justify-content: space-between;
    align-items: center;
+   z-index: 11;
 }
 .message_close {
    transition: all .3s ease-in-out;
    cursor: pointer;
 
-   padding:  6px;
+   padding:  6px 12px;
    border-radius: 150px;
+   font-weight: bold;
    background-color: transparent;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .message_close:hover{
    background-color: #bc8f8f;
    color: white;
 }
 
-/* chill mode */
+/* TODO:  chill mode */
 .chill__mode {
    position: fixed;
-   z-index: 100000000;
+   z-index: 1000;
    width: 100vw;
    height: 100vh;
    top: 0;
@@ -124,7 +134,7 @@ body {
    bottom: 5%;
    right: 5%;
    font-size: 42px;
-   /* color: rgb(254,254,254,.2); */
+   /* TODO:  color: rgb(254,254,254,.2); */
    transition: all .3s linear;
    opacity: .9 !important;
 }
@@ -155,7 +165,7 @@ body {
    color: #8ebffe;
 }
 
-/* scroll bar and  */
+/* TODO:  scroll bar */
 ::-webkit-scrollbar {
    width: 8px;
    background-color: transparent;
@@ -170,4 +180,61 @@ body {
 
 a {
    color: #202020;
+}
+
+/* TODO: loader */
+#loader {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   width: 40px;
+   height:40px;
+   position: relative;
+   /* border: 5px solid rgba(188, 143, 143, 0.1); */
+   border-radius: 100px;
+   margin-left: 40%;
+   top: 5%;
+}
+#loader::after {
+   display: block;
+   content: '';
+   width:45px;
+   height: 45px;
+   position: absolute;
+   border-radius: 100px;
+   border-top: 3px solid #bc8f8f;
+   border-left: 3px solid #bc8f8f;
+   animation: rotateRight 1s linear infinite;
+}
+#loader::before {
+   display: block;
+   content: '';
+   width:25px;
+   height: 25px;
+   position: absolute;
+   border-radius: 100px;
+   border-right: 3px solid #bc8f8f;
+   border-bottom: 3px solid #bc8f8f;
+   animation: rotateLeft 1s linear infinite;
+}
+
+@keyframes rotateRight {
+   0% {
+      transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+@keyframes rotateLeft {
+   0% {
+      transform: rotate(-0deg);
+   }
+
+   100% {
+      transform: rotate(-360deg);
+   }
 }
