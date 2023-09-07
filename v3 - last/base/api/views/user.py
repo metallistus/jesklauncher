@@ -1,25 +1,38 @@
 from django.http import JsonResponse
+from allauth.socialaccount.models import SocialToken, SocialAccount
 from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import login
 from django.contrib.auth import update_session_auth_hash
 
 from django.contrib.auth.models import User
+from ...models import Profile
 
-from allauth.socialaccount.models import SocialToken, SocialAccount
-from google.oauth2.credentials import Credentials
-from oauthlib.oauth2 import WebApplicationClient
 import requests
 
 
 @csrf_exempt
 def update_settings(request):
+    if request.method == 'GET':
+        user =  User.objects.get(username=request.user.username)
+        profile = Profile.objects.get(user=user)
+        
+        return JsonResponse({
+                'status': 'success',
+                'data': {
+                    'username': user.username,
+                    'email': user.email,
+                    'avatar': profile.avatar.url
+                }
+            }, status=200)
+        
     if request.method == 'POST':
         user =  User.objects.get(username=request.user.username)
+        profile = Profile.objects.get(user=user)
         
         email = request.POST.get('email')
-        password = request.POST.get('password')
+        password = request.POST.get('password', None)
+        avatar = request.FILES.get('avatar', None)
         
         status = False
         
@@ -39,9 +52,15 @@ def update_settings(request):
             user.password = make_password(password)   
             update_session_auth_hash(request, user)    
             status = True
+            
+        if avatar:
+            profile.avatar = avatar
+            status = True
                  
         if status:
             user.save()
+            profile.save()
+            
             return JsonResponse({
                 'status': 'success',
                 'message': 'Settings updated successfully'

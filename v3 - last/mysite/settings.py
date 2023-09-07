@@ -1,6 +1,6 @@
 from pathlib import Path
-
 import os
+
 import dotenv
 
 dotenv.load_dotenv()
@@ -23,10 +23,11 @@ DEBUG = True
 
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 ALLOWED_HOSTS = ['*']
-# pip install django djangorestframework django-cors-headers django-allauth django_extension djangorestframework-simplejwt dj_database_url google-auth google-api-python-client python-telegram-bot
+# pip install django  django-allauth  
+# dj_database_url google-auth google-api-python-client python-telegram-bot
 
 # Application definition
-INSTALLED_APPS = [
+INSTALLED_APPS = [    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,7 +38,6 @@ INSTALLED_APPS = [
     'base',
     
     'django.contrib.sites',
-    'django_extensions',
      
     'allauth',
     'allauth.account',
@@ -46,17 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.instagram',
-    'allauth.socialaccount.providers.microsoft',
-    
-    'allauth.socialaccount.providers.telegram',
     'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.trello',
-    
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt',
-    
-    "corsheaders",
 ]
 
 #  python3 manage.py runserver_plus --cert-file /tmp/cert
@@ -74,12 +64,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'allauth.account.auth_backends.AuthenticationBackend',
-    "corsheaders.middleware.CorsMiddleware",
-    
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -190,12 +179,10 @@ SOCIALACCOUNT_PROVIDERS = {
             'profile', 
             'email',
             'https://www.googleapis.com/auth/gmail.readonly',
-            # 'https://www.googleapis.com/auth/gmail',
-            # 'https://mail.google.com/',
-            # 'https://www.googleapis.com/auth/gmail.modify',
-            # 'https://www.googleapis.com/auth/gmail.insert',
-            # 'https://www.googleapis.com/auth/gmail.compose',
-            # 'https://www.googleapis.com/auth/gmail.send',
+            'https://www.googleapis.com/auth/gmail.modify',
+            'https://www.googleapis.com/auth/gmail.compose',
+            'https://www.googleapis.com/auth/gmail.send',
+            'https://www.googleapis.com/auth/gmail.insert',
             # 'https://www.googleapis.com/auth/gmail.metadata',
             'https://mail.google.com/',
             
@@ -203,6 +190,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'https://www.googleapis.com/auth/tasks',
             
             'https://www.googleapis.com/auth/calendar.readonly',
+            'https://www.googleapis.com/auth/calendar',
+            'https://www.googleapis.com/auth/calendar.events',
             
             'https://www.googleapis.com/auth/youtube',
             'https://www.googleapis.com/auth/youtube.readonly',
@@ -216,7 +205,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'APP': {
             'client_id': os.environ.get('GOOGLE_CLIENT_ID'),
             'secret': os.environ.get('GOOGLE_SECRET'),
-            'key': ''
+            'key': os.environ.get('GOOGLE_API_KEY'),
         },
     },
     'github': {
@@ -246,7 +235,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': os.environ.get('FACEBOOK_KEY'),
         },
         'METHOD': 'oauth2',
-        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        # 'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
         'SCOPE': ['email', 'public_profile'],
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
         'INIT_PARAMS': {'cookie': True},
@@ -261,7 +250,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'short_name'
         ],
         'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': 'path.to.callable',
+        # 'LOCALE_FUNC': 'path.to.callable',
         'VERIFIED_EMAIL': False,
         'VERSION': 'v13.0',
         'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
@@ -289,49 +278,3 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
 )
-
-
-# CORS_ALLOWED_ORIGINS = [
-#     'http://127.0.0.1:8000',
-#     'http://127.0.0.1:8080'
-# ]\
-    
-CORS_ALLOW_ALL_ORIGINS = True
-    
-    
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticated',
-    ],
-}
-
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('Bearer',),
-}
-
-# CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID'),
-# CLIENT_SECRET = os.environ.get('GOOGLE_SECRET')
-# REDIRECT_URI = '/'
-
-
-# # URL для авторизации пользователя
-# GOOGLE_AUTH_URL = 'https://accounts.google.com/o/oauth2/auth'
-
-# # URL для обмена авторизационного кода на токены доступа и обновления
-# GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token'
-
-# # Параметры авторизации
-# params = {
-#     'client_id': CLIENT_ID,
-#     'redirect_uri': REDIRECT_URI,
-#     'response_type': 'code',
-#     'scope': 'https://www.googleapis.com/auth/gmail.readonly',
-# }
-
-# # URL для получения авторизационного кода
-# GOOGLE_AUTH_RIDERECT_URL = GOOGLE_ + '?' + '&'.join([f'{key}={value}' for key, value in params.items()])
-
-# APPEND_SLASH = False

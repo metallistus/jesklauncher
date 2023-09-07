@@ -1,23 +1,33 @@
 import requests
 import asyncio
+import time
 
-from datetime import datetime
 from dateutil import parser
+from ...utils import format_time
 
 
-def GoogleGmailService(email_list, access_token, get_email_text, get_header_value, included_apps):
+def GoogleGmailService(
+      email_list, 
+      access_token, 
+      get_email_text, 
+      get_header_value, 
+      included_apps
+   ):
+   
+   messages = []
+   
    async def fetch_emails():
-      responseEmail = requests.get('https://www.googleapis.com/gmail/v1/users/me/messages', params={
+      start_time = time.time()
+      
+      response = requests.get('https://www.googleapis.com/gmail/v1/users/me/messages', params={
          'access_token': access_token,
          'maxResults': 20
       })
       
-      # print('______________response______________', response)
-      if responseEmail.status_code == 200:
+      if response.status_code == 200:
          included_apps.append('Gmail')
          
-         emails = responseEmail.json().get('messages', [])
-         # print('____________emails______________', emails)
+         emails = response.json().get('messages', [])
 
          for email in emails:
                email_id = email['id']
@@ -26,14 +36,14 @@ def GoogleGmailService(email_list, access_token, get_email_text, get_header_valu
                })
                if email_response.status_code == 200:                  
                   email_data = email_response.json()
-                  created_time = get_header_value(email_data['payload']['headers'], 'Date')
+                  created_time = get_header_value(email_data.get('payload', '').get('headers', ''), 'Date')
                   # TODO: Sat, 15 Jul 2023 08:26:59 +0000  =>  2023-06-05 16:45:12
                   
                   dt = parser.parse(created_time)
                   created_time = dt.strftime("%Y-%m-%d %H:%M:%S")
                   
-                  email_list.append({
-                     'id': email_data['id'],
+                  messages.append({
+                     'id': email_data.get('id'),
                      'type': 'Gmail',
                      'title': get_header_value(email_data['payload']['headers'], 'Subject'), 
                      'sender': get_header_value(email_data['payload']['headers'], 'From'), 
@@ -42,9 +52,25 @@ def GoogleGmailService(email_list, access_token, get_email_text, get_header_valu
                      'created_time': created_time,
                   })
                   
-         print('Google Email loaded successfully ✅')
+               elif email_response.status_code == 401 or email_response.status_code == 403:
+                  print(f"Error: {email_response.status_code}")
+                  raise Exception(f"Error {email_response.status_code}: Unauthorized or Forbidden")
+           
+         email_list.extend(messages)
+                
+         elapsed_time = time.time() - start_time                  
+         print(f'Google Email loaded successfully ✅ - {format_time(elapsed_time)}')
+         time.sleep(1)
          
-         return email_list
-                  
-                  
-   asyncio.run(fetch_emails())
+      elif response.status_code == 401 or response.status_code == 403:
+         print(f"Error: {response.status_code}")
+         raise Exception(f"Error {response.status_code}: Unauthorized or Forbidden")
+         
+   try:
+      asyncio.run(fetch_emails())
+   except Exception as e:
+      print(f"An error occurred: {str(e)}")
+      return messages
+   
+   return messages         
+   

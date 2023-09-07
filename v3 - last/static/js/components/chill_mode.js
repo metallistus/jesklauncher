@@ -1,95 +1,32 @@
 
-let chill__mode = document.querySelector('#chill__mode')
+const chillMode = document.querySelector('#chillMode')
+const chillModeClose = document.querySelector('#chill__mode__exit')
 
-// columns
-let today = document.querySelector('.today')
-let inbox = document.querySelector('.inbox')
-let calendarChillMode = document.querySelector('.calendar')
+const openChillMode = () => {
+    const chill__mode = document.querySelector('#chill__mode')
 
-// buttons
-let ChillMode = document.querySelector('#ChillMode')
-let close__chill__mode = document.querySelector('.close__chill__mode')
-
-// options
-let chill__phone__intro__title = document.querySelector('.chill__phone__intro__title')
-let chill__phone__date = document.querySelector('.chill__phone__date')
-let chill__phone__time = document.querySelector('.chill__phone__time')
-let interval
-
-
-// open Chill Mode when you click on button
-ChillMode.onclick = openChillMode
-
-// close Chill Mode when you click on button
-close__chill__mode.onclick = closeChillMode
-
-// close Chill Mode when you click on Escape
-document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey + e.key === 'm') {
-        if (chill__mode.style.display == 'block') {
-            closeChillMode()
-        } else {
-            openChillMode()
-        }
+    for (const column of document.querySelectorAll('.column')) {
+        column.style.opacity = 0
     }
-    if (e.key === 'Escape') {
-        closeChillMode()
-    }
-})
-
-// render data
-let date =  new Date()
-
-let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-let weeksDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-
-chill__phone__date.innerHTML = date.getDate() + ' ' + (months[date.getMonth()]) + ' ' + date.getFullYear()
-chill__phone__intro__title.innerHTML = weeksDays[date.getDay()]
-
-
-// render Time for Chill Mode
-function renderTime() {
-    interval = setInterval(() => {
-      const date = new Date();
-      chill__phone__time.innerHTML = '- ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' -';
-    }, 1000);
-  }
-
-// stop Render Time for Chill Mode
-function stopRenderTime() {
-    clearInterval(interval);
-}
-
-// Close Chill Mode
-function closeChillMode() {
-    chill__mode.style.display = 'none'
-    chill__mode.style.opacity = 0
-    stopRenderTime()
-
-    NatureSoundsAudio.pause()
 
     setTimeout(() => {
-        calendarChillMode.style.opacity = 1
-        today.style.opacity = 1
-        inbox.style.opacity = 1
-    }, 250)
-
-    localStorage.setItem('chill__mode', false)
-}
-
-// open Chill Mode
-function openChillMode() {
-    calendarChillMode.style.opacity = 0
-    today.style.opacity = 0
-    inbox.style.opacity = 0
-
-    NatureSoundsAudio.play()
-
-    setTimeout(() => {
-        renderTime()
-        chill__mode.style.display = 'block'
         chill__mode.style.opacity = 1
+        chill__mode.style.display = 'flex'
     }, 300)
-
-    localStorage.setItem('chill__mode', true)
 }
+
+const closeChillMode = () => {
+    const chill__mode = document.querySelector('#chill__mode')
+
+    chill__mode.style.opacity = 0
+    chill__mode.style.display = 'none'
+
+    setTimeout(() => {
+        for (const column of document.querySelectorAll('.column')) {
+            column.style.opacity = 1
+        }
+    }, 300) 
+}
+
+chillMode.onclick = openChillMode
+chillModeClose.onclick = closeChillMode
